@@ -9,7 +9,7 @@ export default function Contact() {
         </p>
         <a
           href="mailto:hello@example.com"
-          className="inline-block px-8 py-3 bg-primary text-white rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors"
+          className="inline-block px-8 py-3 bg-primary text-white rounded-lg text-sm font-normal hover:bg-gray-800 transition-colors"
         >
           Send me an email
         </a>

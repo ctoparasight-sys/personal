@@ -1,23 +1,39 @@
 const projects = [
   {
-    title: "Project One",
+    title: "Pequliar",
     description:
-      "A brief description of this project and what it does. Replace with your actual project details.",
-    tags: ["React", "TypeScript", "Tailwind"],
+      "ASO design platform for rare disease — predicts antisense oligonucleotide amenability across all pathogenic variants.",
+    tags: ["Python", "Machine Learning", "FastAPI", "Next.js"],
+    link: "/projects/pequliar",
+  },
+  {
+    title: "Jaunt",
+    description: "",
+    tags: [],
     link: "#",
   },
   {
-    title: "Project Two",
-    description:
-      "Another project description. Explain the problem it solves and the tech used.",
-    tags: ["Next.js", "Node.js", "PostgreSQL"],
+    title: "Ribozymes",
+    description: "",
+    tags: [],
     link: "#",
   },
   {
-    title: "Project Three",
-    description:
-      "One more project to showcase your work. Add as many as you like.",
-    tags: ["Python", "Machine Learning"],
+    title: "Pianobiology",
+    description: "",
+    tags: [],
+    link: "#",
+  },
+  {
+    title: "Living Code",
+    description: "",
+    tags: [],
+    link: "#",
+  },
+  {
+    title: "Phylo",
+    description: "",
+    tags: [],
     link: "#",
   },
 ];
@@ -32,9 +48,9 @@ export default function Projects() {
             <a
               key={project.title}
               href={project.link}
-              className="group block p-6 bg-white rounded-xl border border-border hover:border-accent/30 hover:shadow-sm transition-all"
+              className="group block p-4 bg-white rounded-lg border border-border hover:border-accent/30 hover:shadow-sm transition-all"
             >
-              <h3 className="text-lg font-semibold mb-2 group-hover:text-accent transition-colors">
+              <h3 className="text-base font-semibold mb-1 group-hover:text-accent transition-colors">
                 {project.title}
               </h3>
               <p className="text-sm text-muted leading-relaxed mb-4">

@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pequliar — EIC Accelerator Open 2026 — Step 1 Package</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Roboto Mono', 'SF Mono', 'Menlo', 'Courier New', monospace;
+    font-weight: 300;
+    background: #FAFAF9;
+    color: #1E293B;
+    line-height: 1.7;
+    font-size: 13.5px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 56px 24px 80px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .logo {
+    display: inline-block;
+    font-size: 2.8rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: #0F172A;
+    border: 1px solid #0F172A;
+    border-radius: 12px;
+    padding: 0.1em 0.3em;
+    margin-bottom: 12px;
+  }
+
+  .tagline {
+    font-size: 1rem;
+    font-weight: 300;
+    color: #64748B;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #94A3B8;
+    letter-spacing: 0.05em;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid #E2E8F0;
+    margin: 40px 0;
+  }
+
+  .divider-thick {
+    border: none;
+    border-top: 2px solid #0F172A;
+    margin: 48px 0;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #2563EB;
+    margin-bottom: 8px;
+  }
+
+  .section-meta {
+    font-size: 11px;
+    font-weight: 400;
+    color: #94A3B8;
+    margin-bottom: 24px;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #0F172A;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #0F172A;
+    margin-bottom: 12px;
+    margin-top: 24px;
+  }
+
+  h4 {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #475569;
+    margin-bottom: 8px;
+    margin-top: 20px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    line-height: 1.75;
+  }
+
+  .lead {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #0F172A;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  strong {
+    font-weight: 500;
+    color: #0F172A;
+  }
+
+  em {
+    font-style: italic;
+    color: #475569;
+  }
+
+  a {
+    color: #2563EB;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .card-blue {
+    background: linear-gradient(to right, #EFF6FF, #F0F9FF);
+    border: 1px solid #BFDBFE;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .card-teal {
+    background: linear-gradient(to right, #F0FDFA, #ECFDF5);
+    border: 1px solid #99F6E4;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .card-amber {
+    background: linear-gradient(to right, #FFFBEB, #FEF3C7);
+    border: 1px solid #FDE68A;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .card-slate {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .accent-left {
+    border-left: 4px solid #2563EB;
+    padding-left: 20px;
+  }
+
+  .accent-left-teal {
+    border-left: 4px solid #0D9488;
+    padding-left: 20px;
+  }
+
+  .accent-left-violet {
+    border-left: 4px solid #7C3AED;
+    padding-left: 20px;
+  }
+
+  .accent-left-rose {
+    border-left: 4px solid #E11D48;
+    padding-left: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 12.5px;
+  }
+
+  th {
+    text-align: left;
+    font-weight: 400;
+    color: #64748B;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 10px;
+    padding: 8px 12px;
+    border-bottom: 1px solid #E2E8F0;
+    background: #F8FAFC;
+  }
+
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #F1F5F9;
+    vertical-align: top;
+  }
+
+  tr:hover {
+    background: #F8FAFC;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.03em;
+  }
+
+  .badge-blue {
+    background: #EFF6FF;
+    color: #1D4ED8;
+    border: 1px solid #BFDBFE;
+  }
+
+  .badge-emerald {
+    background: #D1FAE5;
+    color: #047857;
+    border: 1px solid #A7F3D0;
+  }
+
+  .badge-amber {
+    background: #FEF3C7;
+    color: #B45309;
+    border: 1px solid #FDE68A;
+  }
+
+  .badge-slate {
+    background: #F1F5F9;
+    color: #475569;
+    border: 1px solid #E2E8F0;
+  }
+
+  ul, ol {
+    margin: 12px 0 16px 20px;
+    line-height: 1.8;
+  }
+
+  li {
+    margin-bottom: 4px;
+  }
+
+  .char-count {
+    float: right;
+    font-size: 10px;
+    font-weight: 400;
+    color: #94A3B8;
+    background: #F1F5F9;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .timestamp {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    color: #2563EB;
+    background: #EFF6FF;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    margin-right: 8px;
+  }
+
+  .script-direction {
+    font-size: 12px;
+    font-weight: 400;
+    color: #94A3B8;
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+
+  .slide-card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    page-break-inside: avoid;
+  }
+
+  .slide-number {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    color: #FFFFFF;
+    background: #0F172A;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    border-radius: 6px;
+    margin-right: 10px;
+  }
+
+  .slide-title {
+    display: inline;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #0F172A;
+  }
+
+  @media print {
+    body { background: white; font-size: 12px; }
+    .container { max-width: 100%; padding: 20px; }
+    .card, .card-blue, .card-teal, .card-amber, .card-slate, .slide-card {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .divider-thick { page-break-before: always; }
+    .no-break { page-break-inside: avoid; }
+  }
+
+  .page-break {
+    page-break-before: always;
+    margin-top: 48px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo">Pequliar</div>
+    <div class="tagline">Your right to try, powered by AI.</div>
+    <div class="subtitle">EIC ACCELERATOR OPEN 2026 &mdash; STEP 1 PACKAGE</div>
+    <div class="subtitle" style="margin-top: 4px;">Grant Only &bull; EUR 1,050,000</div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="card-slate" style="padding: 20px 24px;">
+    <div class="section-label">Contents</div>
+    <table style="margin: 0;">
+      <tr><td style="border: none; padding: 4px 12px;">1</td><td style="border: none; padding: 4px 12px;">Abstract</td><td style="border: none; padding: 4px 12px; color: #94A3B8; text-align: right;">1,000 chars</td></tr>
+      <tr><td style="border: none; padding: 4px 12px;">2</td><td style="border: none; padding: 4px 12px;">Opportunity / Problem</td><td style="border: none; padding: 4px 12px; color: #94A3B8; text-align: right;">5,000 chars</td></tr>
+      <tr><td style="border: none; padding: 4px 12px;">3</td><td style="border: none; padding: 4px 12px;">Company</td><td style="border: none; padding: 4px 12px; color: #94A3B8; text-align: right;">5,000 chars</td></tr>
+      <tr><td style="border: none; padding: 4px 12px;">4</td><td style="border: none; padding: 4px 12px;">Team</td><td style="border: none; padding: 4px 12px; color: #94A3B8; text-align: right;">10,000 chars</td></tr>
+      <tr><td style="border: none; padding: 4px 12px;">5</td><td style="border: none; padding: 4px 12px;">Funding</td><td style="border: none; padding: 4px 12px; color: #94A3B8; text-align: right;">10,000 chars</td></tr>
+      <tr><td style="border: none; padding: 4px 12px;">6</td><td style="border: none; padding: 4px 12px;">Pitch Deck &mdash; 10 Slides</td><td style="border: none; padding: 4px 12px; color: #94A3B8; text-align: right;">text content</td></tr>
+      <tr><td style="border: none; padding: 4px 12px;">7</td><td style="border: none; padding: 4px 12px;">Video Pitch Script</td><td style="border: none; padding: 4px 12px; color: #94A3B8; text-align: right;">3 minutes</td></tr>
+    </table>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 1: ABSTRACT -->
+  <!-- ============================================================ -->
+  <hr class="divider-thick">
+
+  <div class="section-label">Section 1</div>
+  <h2>Abstract</h2>
+  <div class="section-meta"><span class="char-count">998 / 1,000 characters</span></div>
+
+  <div class="card">
+    <p>300 million people live with rare genetic diseases &mdash; 70% of them children. Yet fewer than 100 have ever received a personalised antisense oligonucleotide (ASO), not because the science doesn't work, or regulators aren't willing, or physicians don't try, but because no infrastructure exists to bring ASO design expertise to the patients who need it. Pequliar is that infrastructure. A patient uploads medical records or describes their mutation in plain language. An AI reasoning engine identifies the gene and ASO mechanism, then drives a computational pipeline that models how the target RNA folds, breathes, and resists correction, applies over 50 heuristic quality checks grounded in 17 years of unique experimental data and models, and delivers ranked, synthesis-ready ASO candidates &mdash; in three minutes. Pequliar has recovered ASOs identical in sequence and chemistry to approved drugs that took years and tens of millions to develop, outperforming all existing tools. In a physician pilot across three Israeli medical centres, it has already designed ASOs for children whose treating physicians considered it impossible. Founded by a serial biotech entrepreneur (5 companies, EUR 310M+ raised, 30+ patents), Pequliar seeks EUR 1.05M to reach 100,000 patients within 24 months.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 2: OPPORTUNITY / PROBLEM -->
+  <!-- ============================================================ -->
+  <hr class="divider-thick">
+
+  <div class="section-label">Section 2</div>
+  <h2>Opportunity / Problem</h2>
+  <div class="section-meta"><span class="char-count">4,997 / 5,000 characters</span></div>
+
+  <div class="card">
+    <p class="lead"><strong>300 million people. Fewer than 100 treated. In 20 years.</strong></p>
+
+    <p>Approximately 300 million people worldwide live with rare genetic diseases &mdash; mutations that drive devastating conditions, many without a name in medical literature, let alone a treatment. 70% have pediatric onset, and an estimated 30% of children with rare diseases do not survive past their fifth birthday (Nguengang Wakap et al., <em>Eur J Hum Genet</em> 2020;28:165-173; <em>Lancet Glob Health</em> 2024;12:e341). Their families search desperately for any information, any pathway, any fighting chance. Most find nothing.</p>
+
+    <p>Antisense oligonucleotides (ASOs) are among the most versatile tools for correcting genetic defects. Unlike RNAi (which can only silence genes) or gene editing and mRNA therapies (which require viral vectors and complex delivery), ASOs are synthetic DNA molecules that can silence, skip, switch, block, or upregulate gene expression through six distinct mechanisms. They are pharmacologically simple, clinically validated, and increasingly well-understood. More than a dozen ASO drugs have received regulatory approval from the FDA and EMA (Al Musaimi et al., <em>Pharmaceuticals</em> 2025;18:291), treating conditions from spinal muscular atrophy to hereditary transthyretin amyloidosis to Duchenne muscular dystrophy.</p>
+
+    <p>Yet the knowledge to design ASOs for individual patients remains locked behind pharmaceutical R&amp;D infrastructure costing tens of millions of euros and 5-10 years per program. n-Lorem Foundation, founded by Ionis pioneer Stanley Crooke, provides personalised ASO medicines free of charge for life to patients with nano-rare mutations affecting 1-30 individuals worldwide &mdash; an extraordinary charitable effort that has treated 50 patients to date, with 240 more accepted and waiting (<a href="https://www.nlorem.org/n-lorem-foundation-announces-the-50th-nano-rare-patient-receives-personalized-aso-medicine/">n-Lorem Foundation, 21 April 2026</a>). But n-Lorem's deliberate focus on the rarest mutations, and its requirement for US-based patients at tertiary care centres, means the vast majority of the 300 million rare disease patients worldwide &mdash; including those whose mutations affect hundreds or thousands &mdash; have no pathway to access ASO design expertise.</p>
+
+    <p>The science itself works. Milasen, an ASO designed for a single child with CLN7 Batten disease, demonstrated that individualised ASO therapy can be conceived, designed, and administered within months (<a href="https://www.nejm.org/doi/full/10.1056/NEJMoa1813279">Kim et al., <em>N Engl J Med</em> 2019;381:1644-52</a>). The regulatory framework exists: the FDA has issued three dedicated draft guidances for IND submissions for individualised ASO drug products (<a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/ind-submissions-individualized-antisense-oligonucleotide-drug-products-administrative-and-procedural">FDA-2020-D-2199</a>; <a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/ind-submissions-individualized-antisense-oligonucleotide-drug-products-severely-debilitating-or-life">FDA-2021-D-1140</a>; <a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/investigational-new-drug-application-submissions-individualized-antisense-oligonucleotide-drug">FDA-2021-D-1139</a>). The failure is one of access to knowledge and infrastructure.</p>
+
+    <p>Physicians treating rare disease patients face an impossible gap. They are clinicians, not ASO designers. They lack the computational tools, thermodynamic models, and oligonucleotide chemistry expertise required to identify optimal target sites, evaluate binding energetics, screen for off-target effects, assign chemical modifications, and assess manufacturability. This expertise exists in a handful of pharmaceutical companies and academic laboratories. It is not accessible to the 300 million patients who need it.</p>
+
+    <p>The market opportunity reflects the economics of information versus drug development. Developing an ASO as a pharmaceutical product costs EUR 30-50 million and requires enough patients to justify commercial return &mdash; which most rare diseases do not have. This condemns the majority of patients to permanent therapeutic neglect. The alternative is not cheaper drugs but a fundamentally different model: providing scientific design and analysis as information, at a price accessible to families.</p>
+
+    <p>At a deliberately non-prohibitive price of EUR 370 per design &mdash; comparable to a specialist consultation &mdash; even conservative adoption of 1 in 1,000 affected individuals represents a EUR 111 million market. At 1% adoption, the opportunity exceeds EUR 1 billion. This pricing is designed to be affordable enough that a parent seeking any chance for their child can access cutting-edge ASO design science, while sustaining a business that serves patients at scale.</p>
+
+    <p>The opportunity is not to develop another ASO drug. It is to democratise the knowledge that makes ASO therapy design possible &mdash; and make it accessible to every rare disease family in the world.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 3: COMPANY -->
+  <!-- ============================================================ -->
+  <hr class="divider-thick">
+
+  <div class="section-label">Section 3</div>
+  <h2>Company</h2>
+  <div class="section-meta"><span class="char-count">4,993 / 5,000 characters</span></div>
+
+  <div class="card">
+    <p>Pequliar was founded in 2026 by Ido Bachelet, Ph.D., to solve a problem he has spent 17 years preparing to address: making antisense oligonucleotide design accessible to every rare disease patient in the world, not just the handful served by pharmaceutical R&amp;D.</p>
+
+    <h3>The Founder</h3>
+    <p>Bachelet holds a Ph.D. in Pharmacology and Experimental Therapeutics Design from the Hebrew University of Jerusalem and a B.Sc.Med. from Hadassah Medical School. He trained at MIT (Sasisekharan lab) and Harvard Medical School / Wyss Institute (George Church lab), where he pioneered programmable DNA nanostructures for therapeutic applications, publishing in <a href="https://www.science.org/doi/10.1126/science.1214081"><em>Science</em> (2012)</a> and <a href="https://www.nature.com/articles/nnano.2014.58"><em>Nature Nanotechnology</em> (2014)</a>. He holds 30+ patents, including patents on mRNA target identification and therapeutic oligonucleotide design &mdash; the core science underlying Pequliar. Over the past 13 years he has co-founded five companies that collectively raised over EUR 310 million, including 1E Therapeutics (EUR 110M seed round, 2021 &mdash; the largest biotech seed in Israeli history), the first XNAzyme company, developing a novel class of catalytic oligonucleotides for RNA silencing. Bachelet brings a rare combination of deep nucleic acid science, computational biology expertise, and proven entrepreneurial execution.</p>
+
+    <h3>The Product</h3>
+    <p>Pequliar is an AI-powered platform (pequliar.ai) that performs end-to-end ASO design for individual patients. A patient or physician describes their genetic condition &mdash; by uploading medical records, genetic test results, or simply describing the mutation in natural language. The platform's AI agent identifies the affected gene, determines the optimal ASO mechanism (from six supported: gene-silencing, exon-skipping, splice-switching, pseudoexon-blocking, upregulation, and heteroplasmy-shifting), and executes a full computational design pipeline. Pequliar utilises state-of-the-art AI and computational tools for RNA analysis that encompass the most current knowledge of how RNA folds, breathes, resists correction, and interacts with therapeutic oligonucleotides. Critically, each candidate is evaluated against 51 heuristic quality checks built on 17 years of data and models &mdash; including unique datasets from atomic force microscopy and single-molecule spectroscopy &mdash; covering domains from predicted toxicity profiles to manufacturing feasibility to mechanism-specific efficacy. The output is a ranked set of optimised ASO candidates with full chemistry assignment, quality annotations, and a downloadable synthesis-ready report &mdash; delivered in minutes, not months.</p>
+
+    <h3>Current Status (TRL 6-7)</h3>
+    <p>The platform is live in production. The computational pipeline has been validated against approved ASO drugs, recovering 47% of known therapeutics in the top-10 ranked candidates &mdash; compared to 20% for existing academic tools. A 100-patient batch simulation achieved a 93.4% completion rate with zero pipeline failures. A physician pilot study is underway across three leading medical centres in Israel (Schneider Children's Hospital, Sheba Medical Center, Meir Hospital), with 20-30 patients per centre given free access. Early pilot cases include a heteroplasmy-shifting ASO for a child with the m.A3243G mutation driving MELAS syndrome, and a gene-silencing ASO targeting an Asp437 deletion in COMP causing pseudoachondroplasia &mdash; a case the treating physicians had considered impossible to design. The platform supports all six ASO mechanisms end-to-end, including heteroplasmy-shifting for mitochondrial mutations &mdash; a mechanism no other tool offers.</p>
+
+    <h3>Business Model</h3>
+    <p>EUR 370 per design, paid by the patient. No subscription, no recurring fees. One mutation, one design, one payment. Beyond direct patient access, Pequliar pursues two additional market strategies: first, licensing the platform as a design engine to pharmaceutical companies developing rare disease therapies (initial discussions with Chiesi, Italy); and second, partnerships with AI companies increasingly investing in AI for health and medicine.</p>
+
+    <h3>Vision and Use of Funds</h3>
+    <p>The EIC grant will fund: founder salary, a full-stack engineer (50% position, 12 months), external consultants (legal, regulatory, clinical), targeted validation studies on pilot cases, IP protection (patent filings covering the multi-mechanism design pipeline and heuristic scoring system), and marketing and patient outreach. Within 24 months, Pequliar aims to reach 100,000 patients worldwide.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 4: TEAM -->
+  <!-- ============================================================ -->
+  <hr class="divider-thick">
+
+  <div class="section-label">Section 4</div>
+  <h2>Team</h2>
+  <div class="section-meta"><span class="char-count">10,000 characters</span></div>
+
+  <div class="card">
+    <h3>Ido Bachelet, Ph.D. &mdash; Founder &amp; CEO</h3>
+    <p><span class="badge badge-slate">Male</span> <span class="badge badge-slate">Israeli</span></p>
+
+    <p>Dr. Bachelet is a nucleic acid scientist and serial biotech entrepreneur with 17 years of experience in oligonucleotide therapeutics, drug discovery, and computational biology.</p>
+
+    <h4>Academic Training</h4>
+    <ul>
+      <li>B.Sc.Med., Hadassah Medical School, Hebrew University of Jerusalem</li>
+      <li>Ph.D. in Pharmacology and Experimental Therapeutics Design, Hebrew University of Jerusalem (2001-2007)</li>
+      <li>Postdoctoral Fellow, MIT, Department of Biological Engineering (Sasisekharan lab, 2007-2009)</li>
+      <li>Postdoctoral Fellow, Harvard Medical School &amp; Wyss Institute for Biologically Inspired Engineering (George Church lab, 2009-2012)</li>
+      <li>Faculty, Bar-Ilan University (2012-2015); Faculty, Singularity University (2012-2016)</li>
+    </ul>
+
+    <h4>Entrepreneurial Track Record</h4>
+    <div class="card-slate" style="padding: 16px;">
+      <table style="margin: 0;">
+        <tr><td style="font-weight: 500;">Sight Diagnostics (2011)</td><td>AI-powered blood diagnostics</td><td style="text-align: right;">$124M raised</td></tr>
+        <tr><td style="font-weight: 500;">Augmanity (2014)</td><td>Therapeutic DNA/RNA origami</td><td style="text-align: right;">$50M raised</td></tr>
+        <tr><td style="font-weight: 500;">Aummune (2017)</td><td>Personalized oligonucleotide therapeutics for oncology</td><td style="text-align: right;">$32M raised</td></tr>
+        <tr><td style="font-weight: 500;">Wild Biotech (2019)</td><td>Synthetic metagenomics</td><td style="text-align: right;">$13M raised</td></tr>
+        <tr><td style="font-weight: 500;">1E Therapeutics (2021)</td><td>XNAzyme-based RNA silencing (first XNAzyme company)</td><td style="text-align: right;">$120M raised</td></tr>
+        <tr style="border-top: 1px solid #E2E8F0;"><td style="font-weight: 500;" colspan="2">Total capital raised across ventures</td><td style="text-align: right; font-weight: 500;">EUR 310M+</td></tr>
+      </table>
+    </div>
+
+    <h4>Scientific Output</h4>
+    <ul>
+      <li>30+ patents, including mRNA target identification and therapeutic oligonucleotide design</li>
+      <li>Publications in <em>Science</em>, <em>Nature Nanotechnology</em>, <em>Nature Communications</em>, <em>PNAS</em>, <em>Nature Protocols</em></li>
+      <li>H-index 25</li>
+      <li>Pioneered logic-gated DNA nanorobots for targeted therapeutics (<a href="https://www.science.org/doi/10.1126/science.1214081"><em>Science</em>, 2012</a>)</li>
+      <li>First demonstration of DNA nanorobot function in a living animal (<a href="https://www.nature.com/articles/nnano.2014.58"><em>Nature Nanotechnology</em>, 2014</a>)</li>
+      <li>Pioneered personalized oligonucleotide evolution for oncology</li>
+      <li>Structural biology of long RNA using atomic force microscopy</li>
+      <li>Founded the first XNAzyme company (1E Therapeutics)</li>
+    </ul>
+
+    <h4>Relevance to Pequliar</h4>
+    <p>Bachelet's career arc &mdash; from pharmacology and experimental therapeutics design (Ph.D.), to programmable DNA therapeutics (Harvard/Wyss), to personalized oligonucleotide therapeutics (Aummune), to RNA-targeting catalytic oligonucleotides (1E Therapeutics), to AI-driven ASO design (Pequliar) &mdash; represents a direct, 17-year trajectory toward this company. He is not pivoting into an unfamiliar field. He is applying accumulated, deep expertise to a problem he understands at every level: molecular, computational, regulatory, and entrepreneurial.</p>
+  </div>
+
+  <div class="card">
+    <h3>Scientific Advisory Board</h3>
+    <table>
+      <tr><td style="font-weight: 500;">Prof. George Church</td><td>Harvard/MIT &mdash; Pioneer in genomics and personalised medicine</td><td><span class="badge badge-emerald">Confirmed</span></td></tr>
+    </table>
+
+    <h4 style="margin-top: 16px;">Board of Directors</h4>
+    <table>
+      <tr><td style="font-weight: 500;">Ex-CEO, Teva Pharmaceuticals</td><td>Global pharmaceutical leadership</td><td><span class="badge badge-amber">In discussions</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Planned Roles (Grant-Funded)</h3>
+    <ol>
+      <li><strong>Full-Stack Engineer (50% position, 12 months)</strong> &mdash; Scale platform infrastructure, improve UI/UX, support growing user load toward 100,000 patients. Months 1-12 of grant period. KPIs: 99.9% uptime, &lt;2s page load, multi-language support, pharma API endpoints, full documentation and handover by month 12.</li>
+      <li><strong>External Regulatory &amp; Clinical Consultants</strong> &mdash; Paid consultancy engagements to navigate N-of-1 ASO regulatory landscape across FDA and EMA jurisdictions and build hospital partnerships. Not employees.</li>
+      <li><strong>External Legal Counsel</strong> &mdash; Paid consultancy for IP strategy and patent prosecution. Not employees.</li>
+    </ol>
+    <p style="margin-top: 12px;">The majority of the work &mdash; platform development, pipeline science, heuristic engineering, AI integration, and business development &mdash; will be performed by the founder.</p>
+
+    <h4>Gender Balance Statement</h4>
+    <p>Pequliar is currently a single-founder company. The founder is committed to building a diverse team as the company grows. Recruitment for the full-stack engineer role will actively seek gender-balanced candidate pools.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 5: FUNDING -->
+  <!-- ============================================================ -->
+  <hr class="divider-thick">
+
+  <div class="section-label">Section 5</div>
+  <h2>Funding</h2>
+  <div class="section-meta"><span class="char-count">10,000 characters</span></div>
+
+  <div class="card-blue">
+    <table style="margin: 0;">
+      <tr><td style="border: none; font-weight: 500; padding: 6px 12px;">Requested EIC Support</td><td style="border: none; text-align: right; font-weight: 500; padding: 6px 12px; color: #1D4ED8;">EUR 1,050,000</td></tr>
+      <tr><td style="border: none; padding: 6px 12px;">Total Project Cost</td><td style="border: none; text-align: right; padding: 6px 12px;">EUR 1,500,000</td></tr>
+      <tr><td style="border: none; padding: 6px 12px;">Co-Financing (30%)</td><td style="border: none; text-align: right; padding: 6px 12px;">EUR 450,000</td></tr>
+      <tr><td style="border: none; padding: 6px 12px;">Type</td><td style="border: none; text-align: right; padding: 6px 12px;"><span class="badge badge-blue">Grant Only &mdash; No Equity</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Co-Financing Breakdown</h3>
+    <table>
+      <thead>
+        <tr><th>Source</th><th>Amount (EUR)</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Founder self-funding (9 months salary, Jan-Sep 2026)</td><td>160,000</td><td><span class="badge badge-emerald">Committed / spent</span></td></tr>
+        <tr><td>Programming, IT infrastructure, cloud services</td><td>5,000</td><td><span class="badge badge-emerald">Committed / spent</span></td></tr>
+        <tr><td>Patent preparation and filing</td><td>5,000</td><td><span class="badge badge-emerald">Committed / spent</span></td></tr>
+        <tr><td>Additional founder costs (months 10-24)</td><td>30,000</td><td><span class="badge badge-amber">Projected</span></td></tr>
+        <tr><td>Revenue from patient designs (~630 patients &times; EUR 370, reached by ~month 6)</td><td>250,000</td><td><span class="badge badge-amber">Projected</span></td></tr>
+        <tr style="font-weight: 500;"><td>Total</td><td colspan="2">EUR 450,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Why Private Investment Is Insufficient at This Stage</h3>
+
+    <div class="accent-left" style="margin-bottom: 16px;">
+      <h4 style="margin-top: 0;">1. A new category between biotech VC and SaaS VC</h4>
+      <p style="margin-bottom: 0;">Pequliar's EUR 370 per-design model resembles expert consulting &mdash; a well-understood business. However, it is B2C (patients, not enterprises), transactional (not subscription), and in a domain (rare disease) where biotech VCs expect drug candidates and pipeline valuations, while software VCs expect enterprise contracts with annual recurring revenue. Pequliar fits neither framework cleanly. The pharma licensing channel would satisfy biotech investors, and patient volume would satisfy SaaS investors &mdash; but at pre-revenue stage, neither story is yet proven. Non-dilutive EIC funding bridges this gap without forcing premature positioning into either category.</p>
+    </div>
+
+    <div class="accent-left-teal" style="margin-bottom: 16px;">
+      <h4 style="margin-top: 0;">2. Premature equity would distort the mission</h4>
+      <p style="margin-bottom: 0;">Having raised EUR 310M+ across five previous ventures, Bachelet is acutely aware of the distortions that premature equity financing creates &mdash; particularly in a company whose mission is to serve patients affordably. VC investment at this stage would create pressure to increase pricing, restrict access, or pivot toward pharmaceutical licensing as the primary business &mdash; undermining the core patient-access mission. The EIC grant provides non-dilutive capital that preserves the company's ability to keep prices accessible while building toward scale. Once patient volume demonstrates product-market fit, private investment can be raised on the company's own terms.</p>
+    </div>
+
+    <div class="accent-left-violet" style="margin-bottom: 16px;">
+      <h4 style="margin-top: 0;">3. EIC is uniquely aligned</h4>
+      <p style="margin-bottom: 0;">The EIC Accelerator is designed precisely for deep-tech companies at TRL 6-7 that need to bridge from validated technology to market scale. Pequliar's platform is built, validated, and in physician pilot &mdash; but requires investment in marketing, patient outreach, IP protection, and clinical validation to reach the scale where revenue sustains operations. This is exactly the gap non-dilutive EIC funding is designed to fill, without the mission-distorting pressure of equity investors optimising for short-term returns.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Use of EIC Grant Funds</h3>
+    <table>
+      <thead>
+        <tr><th>Category</th><th>Amount (EUR)</th><th>%</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Personnel &mdash; Founder salary (24 months)</td><td>421,000</td><td>40%</td></tr>
+        <tr><td>Personnel &mdash; Full-stack engineer (50% position, 12 months)</td><td>105,000</td><td>10%</td></tr>
+        <tr><td>External consultants &mdash; Regulatory / clinical</td><td>100,000</td><td>10%</td></tr>
+        <tr><td>External consultants &mdash; Legal counsel / IP prosecution</td><td>60,000</td><td>6%</td></tr>
+        <tr><td>Clinical validation studies (pilot cases)</td><td>80,000</td><td>8%</td></tr>
+        <tr><td>Marketing &amp; patient outreach</td><td>124,000</td><td>12%</td></tr>
+        <tr><td>IT infrastructure &amp; cloud services</td><td>80,000</td><td>8%</td></tr>
+        <tr><td>Travel (conferences, hospital partnerships)</td><td>80,000</td><td>8%</td></tr>
+        <tr style="font-weight: 500; border-top: 1px solid #E2E8F0;"><td>Total Grant</td><td>1,050,000</td><td>100%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Growth Projection &mdash; S-Curve to 100,000 Patients</h3>
+    <p>The projection follows a Bass diffusion model adapted for rare disease patient communities, which exhibit high imitation coefficients due to tight-knit advocacy networks where information spreads rapidly.</p>
+    <table>
+      <thead>
+        <tr><th>Month</th><th>New Patients</th><th>Cumulative</th><th>Monthly Revenue (EUR)</th><th>Driver</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>15</td><td>15</td><td>5,550</td><td>Pilot spillover, early adopters</td></tr>
+        <tr><td>2</td><td>25</td><td>40</td><td>9,250</td><td>Word of mouth</td></tr>
+        <tr><td>3</td><td>50</td><td>90</td><td>18,500</td><td>First social media posts</td></tr>
+        <tr><td>4</td><td>100</td><td>190</td><td>37,000</td><td>X / Meta campaigns launch</td></tr>
+        <tr><td>5</td><td>200</td><td>390</td><td>74,000</td><td>Patient advocacy outreach</td></tr>
+        <tr style="background: #ECFDF5;"><td style="font-weight: 500;">6</td><td style="font-weight: 500;">350</td><td style="font-weight: 500;">740</td><td style="font-weight: 500;">129,500</td><td style="font-weight: 500;"><span class="badge badge-emerald">~630 patient co-financing milestone</span></td></tr>
+        <tr><td>7</td><td>600</td><td>1,340</td><td>222,000</td><td>Viral spread in rare disease communities</td></tr>
+        <tr><td>8</td><td>1,000</td><td>2,340</td><td>370,000</td><td>Media coverage, physician referrals</td></tr>
+        <tr><td>9</td><td>1,800</td><td>4,140</td><td>666,000</td><td>Network effects accelerate</td></tr>
+        <tr><td>10</td><td>3,000</td><td>7,140</td><td>1,110,000</td><td>International reach (EU, US)</td></tr>
+        <tr><td>11</td><td>4,500</td><td>11,640</td><td>1,665,000</td><td>Pharma partnership amplification</td></tr>
+        <tr style="background: #EFF6FF;"><td style="font-weight: 500;">12</td><td style="font-weight: 500;">6,000</td><td style="font-weight: 500;">17,640</td><td style="font-weight: 500;">2,220,000</td><td style="font-weight: 500;"><span class="badge badge-blue">End of Year 1</span></td></tr>
+        <tr><td>13</td><td>7,500</td><td>25,140</td><td>2,775,000</td><td>Scaling marketing spend</td></tr>
+        <tr><td>14</td><td>8,500</td><td>33,640</td><td>3,145,000</td><td>Hospital network referrals</td></tr>
+        <tr><td>15</td><td>9,500</td><td>43,140</td><td>3,515,000</td><td>Second wave media</td></tr>
+        <tr><td>16</td><td>10,500</td><td>53,640</td><td>3,885,000</td><td>AI partnership channel opens</td></tr>
+        <tr><td>17</td><td>11,000</td><td>64,640</td><td>4,070,000</td><td>Peak growth rate</td></tr>
+        <tr><td>18</td><td>10,500</td><td>75,140</td><td>3,885,000</td><td>Market penetration deepening</td></tr>
+        <tr><td>19</td><td>8,000</td><td>83,140</td><td>2,960,000</td><td>Growth rate moderating</td></tr>
+        <tr><td>20</td><td>6,500</td><td>89,640</td><td>2,405,000</td><td>Approaching early-adopter saturation</td></tr>
+        <tr><td>21</td><td>4,500</td><td>94,140</td><td>1,665,000</td><td>Steady state approaching</td></tr>
+        <tr><td>22</td><td>3,000</td><td>97,140</td><td>1,110,000</td><td>Organic growth</td></tr>
+        <tr><td>23</td><td>1,800</td><td>98,940</td><td>666,000</td><td>Plateau</td></tr>
+        <tr style="background: #ECFDF5;"><td style="font-weight: 500;">24</td><td style="font-weight: 500;">1,100</td><td style="font-weight: 500;">100,040</td><td style="font-weight: 500;">407,000</td><td style="font-weight: 500;"><span class="badge badge-emerald">Target reached: 100,000 patients</span></td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top: 12px;"><strong>Key milestones:</strong> Co-financing milestone (~630 patients) reached by month 6. Year 1 cumulative: ~17,600 patients. Year 2 cumulative: 100,000 patients. Total 24-month gross revenue: ~EUR 37M (assuming ~80% paying, ~20% physician access codes: net ~EUR 30M).</p>
+    <p>Growth is driven by rare disease patient advocacy communities &mdash; tight-knit networks where families actively search and share information. A single post in a rare disease Facebook group or X thread can reach thousands of affected families within hours. This high-imitation-coefficient dynamic, combined with targeted social media campaigns and physician referral networks, supports the S-curve trajectory above.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 6: PITCH DECK -->
+  <!-- ============================================================ -->
+  <hr class="divider-thick">
+
+  <div class="section-label">Section 6</div>
+  <h2>Pitch Deck &mdash; 10 Slides</h2>
+  <div class="section-meta">Text content for each slide. Visual design to be produced separately.</div>
+
+  <!-- Slide 1 -->
+  <div class="slide-card">
+    <div><span class="slide-number">1</span><span class="slide-title">Title</span></div>
+    <hr class="divider" style="margin: 12px 0;">
+    <p class="lead" style="margin-bottom: 4px;"><strong>Pequliar</strong></p>
+    <p style="color: #64748B; margin-bottom: 12px;"><em>ASO design for every rare disease patient in the world</em></p>
+    <p style="margin-bottom: 4px;">EIC Accelerator Open 2026 &mdash; Grant Only</p>
+    <p style="margin-bottom: 4px;">EUR 1,050,000</p>
+    <p style="margin-bottom: 4px;">Ido Bachelet, Ph.D. &mdash; Founder &amp; CEO</p>
+    <p>pequliar.ai</p>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="slide-card">
+    <div><span class="slide-number">2</span><span class="slide-title">The Problem</span></div>
+    <hr class="divider" style="margin: 12px 0;">
+    <p class="lead"><strong>300 million people. No infrastructure.</strong></p>
+    <ul>
+      <li>300 million people worldwide live with rare genetic diseases (Nguengang Wakap et al., <em>Eur J Hum Genet</em> 2020)</li>
+      <li>70% are children. 30% will not survive to age 5</li>
+      <li>95% have no approved treatment</li>
+      <li>In 20 years, fewer than 100 patients have ever received a personalised ASO</li>
+    </ul>
+    <p><strong>Nobody is to blame.</strong> Physicians try to help but lack the expertise. Pharma has no viable business model for mutations affecting single families. Regulators are willing &mdash; the FDA has issued dedicated N-of-1 ASO guidance. n-Lorem provides free ASOs for life, but only for nano-rare mutations (1-30 patients worldwide) in the US &mdash; 50 patients treated to date.</p>
+    <p><strong>The gap is not science, regulation, or intent. It is infrastructure.</strong> No tool exists to bring ASO design expertise to the patients who need it.</p>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="slide-card">
+    <div><span class="slide-number">3</span><span class="slide-title">Why ASOs</span></div>
+    <hr class="divider" style="margin: 12px 0;">
+    <p class="lead"><strong>The most versatile tool for correcting genetic defects</strong></p>
+    <ul>
+      <li>13+ ASO drugs approved by FDA and/or EMA</li>
+      <li>6 distinct mechanisms: gene-silencing, exon-skipping, splice-switching, pseudoexon-blocking, upregulation, heteroplasmy-shifting</li>
+      <li>Unlike RNAi (silencing only), gene editing or mRNA (viral vectors, complex delivery) &mdash; ASOs are synthetic DNA, pharmacologically simple, clinically validated</li>
+      <li>Milasen: ASO designed for a single child in months, not years (<a href="https://www.nejm.org/doi/full/10.1056/NEJMoa1813279">Kim et al., <em>NEJM</em> 2019</a>)</li>
+      <li>FDA has issued 3 dedicated draft guidances for individualised ASO IND submissions (2020-2021)</li>
+      <li>Regulatory path exists. Science works. The missing piece is access to design.</li>
+    </ul>
+    <p><em>[Visual: table of approved ASO drugs with mechanism, year, indication]</em></p>
+  </div>
+
+  <!-- Slide 4 -->
+  <div class="slide-card">
+    <div><span class="slide-number">4</span><span class="slide-title">The Solution</span></div>
+    <hr class="divider" style="margin: 12px 0;">
+    <p class="lead"><strong>Pequliar &mdash; from mutation to synthesis-ready ASO in 3 minutes</strong></p>
+    <ol>
+      <li><strong>Patient uploads</strong> medical records, genetic test results, or describes mutation in plain language</li>
+      <li><strong>AI reasoning engine</strong> reads, identifies gene and mutation, determines optimal ASO mechanism</li>
+      <li><strong>Computational pipeline</strong> analyses how the target RNA folds, breathes, and resists correction</li>
+      <li><strong>51 heuristic quality checks</strong> &mdash; built on 17 years of experimental data including AFM and single-molecule spectroscopy &mdash; evaluate toxicity, manufacturability, mechanism-specific efficacy, and more</li>
+      <li><strong>Output:</strong> Ranked ASO candidates with full chemistry assignment, quality annotations, and downloadable synthesis-ready report</li>
+    </ol>
+    <p><strong>EUR 370 per design.</strong> Accessible to any family. Delivered in minutes.</p>
+    <p><em>[Visual: product screenshot or pipeline flow diagram]</em></p>
+  </div>
+
+  <!-- Slide 5 -->
+  <div class="slide-card">
+    <div><span class="slide-number">5</span><span class="slide-title">The Uniqueness</span></div>
+    <hr class="divider" style="margin: 12px 0;">
+    <p class="lead"><strong>17 years of data no one else has</strong></p>
+    <p>Pequliar's heuristic engine is not built on public datasets alone. It incorporates:</p>
+    <ul>
+      <li><strong>Atomic force microscopy (AFM)</strong> imaging of RNA-oligonucleotide interactions at single-molecule resolution</li>
+      <li><strong>Single-molecule spectroscopy</strong> data on RNA folding dynamics and oligonucleotide binding kinetics</li>
+      <li><strong>Proprietary models</strong> trained on these datasets over 17 years, predating the current AI era</li>
+      <li><strong>Personalized oligonucleotide evolution</strong> methods pioneered by the founder for oncology applications</li>
+    </ul>
+    <p>This data is encoded into 51 heuristic quality checks spanning toxicity prediction, manufacturing feasibility, mechanism-specific validation, off-target risk, pharmacological properties, and structural context.</p>
+    <p><strong>No competing tool has access to this data or these models.</strong></p>
+    <p><em>[Visual: UMAP landscape + AFM images]</em></p>
+  </div>
+
+  <!-- Slide 6 -->
+  <div class="slide-card">
+    <div><span class="slide-number">6</span><span class="slide-title">Performance</span></div>
+    <hr class="divider" style="margin: 12px 0;">
+    <p class="lead"><strong>Pequliar outperforms every existing tool</strong></p>
+    <table>
+      <thead><tr><th>Metric</th><th>Pequliar</th><th>Best Existing Tool</th><th>Naive Ranking</th></tr></thead>
+      <tbody>
+        <tr><td>Drug recovery (top-10)</td><td style="font-weight: 500; color: #047857;">47%</td><td>20%</td><td>20%</td></tr>
+        <tr><td>Drug recovery (top-20)</td><td style="font-weight: 500; color: #047857;">60%</td><td>27%</td><td>27%</td></tr>
+      </tbody>
+    </table>
+    <table style="margin-top: 16px;">
+      <thead><tr><th>Drug</th><th>Target</th><th>Pequliar Rank</th></tr></thead>
+      <tbody>
+        <tr><td>Nusinersen (SMA)</td><td>SMN2 intron 7</td><td style="font-weight: 500;">Top 0.4%</td></tr>
+        <tr><td>Eteplirsen (DMD)</td><td>Exon 51</td><td style="font-weight: 500;">Top 0.8%</td></tr>
+        <tr><td>Inotersen (hATTR)</td><td>TTR mRNA</td><td style="font-weight: 500;">Top 1.0%</td></tr>
+        <tr><td>Mipomersen (FH)</td><td>ApoB mRNA</td><td style="font-weight: 500;">Top 0.5%</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top: 12px;">Pequliar recovered ASOs <strong>identical in sequence and chemistry</strong> to approved drugs that took years and tens of millions of euros to develop &mdash; in 3 minutes.</p>
+  </div>
+
+  <!-- Slide 7 -->
+  <div class="slide-card">
+    <div><span class="slide-number">7</span><span class="slide-title">Case Studies &mdash; Physician Pilot</span></div>
+    <hr class="divider" style="margin: 12px 0;">
+    <p class="lead"><strong>Already designing what physicians thought impossible</strong></p>
+    <p>Pilot study underway across three leading Israeli medical centres (Schneider Children's Hospital, Sheba Medical Center, Meir Hospital). 20-30 patients per centre, free access.</p>
+
+    <div class="card-teal" style="margin-top: 16px;">
+      <h4 style="margin-top: 0; color: #0F766E;">Case 1: MELAS &mdash; m.A3243G in MT-TL1 (tRNA-Leu)</h4>
+      <p style="margin-bottom: 0;">The most prevalent mutation driving MELAS syndrome. Every conventional ASO approach fails: the target is a noncoding RNA (tRNA-Leu), so it cannot be silenced. Mitochondrial DNA has no exons or introns, ruling out exon-skipping. The tRNA's rigid three-dimensional structure makes it inaccessible to DNAzymes. Pequliar designed a heteroplasmy-shifting ASO &mdash; a mechanism class no other tool supports &mdash; that selectively binds the mutant mitochondrial DNA to shift the heteroplasmic ratio in favour of wild-type copies.</p>
+    </div>
+
+    <div class="card-blue" style="margin-top: 12px;">
+      <h4 style="margin-top: 0; color: #1E40AF;">Case 2: Pseudoachondroplasia &mdash; Asp437 deletion in COMP</h4>
+      <p style="margin-bottom: 0;">A girl with a dominant GAC deletion in a multiple GAC repeat region of COMP (wild-type: 5&times;GAC, mutant: 4&times;GAC). The sequences flanking the deletion are practically identical, making allele-selective targeting seemingly impossible. Pequliar analysed base modification catalogues across all oligonucleotide synthesis vendors and designed a region of targeted mismatches using non-hydrogen-bonding base analogues &mdash; generating an ASO that preferentially binds mutant over wild-type at approximately 50% occupancy.</p>
+    </div>
+
+    <p style="margin-top: 16px;"><strong>These are real children. These are the cases the platform was built for.</strong></p>
+  </div>
+
+  <!-- Slide 8 -->
+  <div class="slide-card">
+    <div><span class="slide-number">8</span><span class="slide-title">Business Model &amp; Market</span></div>
+    <hr class="divider" style="margin: 12px 0;">
+    <p class="lead"><strong>Three revenue channels</strong></p>
+
+    <div class="accent-left" style="margin-bottom: 12px;">
+      <h4 style="margin-top: 0;">1. Direct patient access (primary)</h4>
+      <p style="margin-bottom: 0;">EUR 370 per design, paid by the patient. No subscription. At 0.1% penetration of 300M &rarr; EUR 111M. At 1% &rarr; EUR 1.1B.</p>
+    </div>
+    <div class="accent-left-teal" style="margin-bottom: 12px;">
+      <h4 style="margin-top: 0;">2. Pharma partnerships</h4>
+      <p style="margin-bottom: 0;">Licensing Pequliar as a design engine to pharmaceutical companies. Initial discussions with Chiesi (Italy). Per-program licensing fee or revenue share.</p>
+    </div>
+    <div class="accent-left-violet" style="margin-bottom: 12px;">
+      <h4 style="margin-top: 0;">3. AI health partnerships</h4>
+      <p style="margin-bottom: 0;">AI companies investing in health and medicine. Pequliar as a domain-specific ASO design layer within broader AI health platforms.</p>
+    </div>
+
+    <p style="margin-top: 16px;"><strong>Unit economics:</strong> Near-zero marginal cost per design (cloud compute only). No physical goods, no manufacturing, no clinical trials. Gross margin &gt;95%.</p>
+  </div>
+
+  <!-- Slide 9 -->
+  <div class="slide-card">
+    <div><span class="slide-number">9</span><span class="slide-title">Strategy &amp; Milestones</span></div>
+    <hr class="divider" style="margin: 12px 0;">
+    <p class="lead"><strong>24-month plan &mdash; from pilot to 100,000 patients</strong></p>
+    <table>
+      <thead><tr><th>Quarter</th><th>Milestone</th></tr></thead>
+      <tbody>
+        <tr><td style="font-weight: 500;">Q1</td><td>Complete Israeli physician pilot (60-90 patients). Hire full-stack engineer (50%). File first patents.</td></tr>
+        <tr><td style="font-weight: 500;">Q2</td><td>Launch marketing &mdash; direct patient outreach in US and EU via social media and rare disease advocacy networks. Engage regulatory consultants. Begin clinical validation studies.</td></tr>
+        <tr><td style="font-weight: 500;">Q3</td><td>Expand physician network &mdash; onboard first EU and US medical centres. Advance Chiesi partnership discussions.</td></tr>
+        <tr><td style="font-weight: 500;">Q4</td><td>Engineer completes platform scaling (multi-language, pharma API, mobile). First pharma partnership deal. ~17,600 cumulative patients.</td></tr>
+        <tr><td style="font-weight: 500;">Q5-Q6</td><td>Scale patient volume. Initiate AI health partnerships. Expand mechanism coverage.</td></tr>
+        <tr><td style="font-weight: 500;">Q7-Q8</td><td>Reach 100,000 patients. Achieve profitability on direct patient channel. Prepare Series A or next EIC phase.</td></tr>
+      </tbody>
+    </table>
+
+    <h4>Advisory &amp; Governance</h4>
+    <table>
+      <thead><tr><th>Role</th><th>Name</th><th>Affiliation</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge badge-emerald">SAB</span></td><td style="font-weight: 500;">Prof. George Church</td><td>Harvard/MIT &mdash; Genomics &amp; personalised medicine</td></tr>
+        <tr><td><span class="badge badge-amber">BoD</span></td><td style="font-weight: 500;">Ex-CEO, Teva Pharmaceuticals</td><td>Global pharmaceutical leadership</td></tr>
+      </tbody>
+    </table>
+
+    <h4>Clinical Partnerships</h4>
+    <ul>
+      <li>Schneider Children's Hospital, Israel &mdash; physician pilot (active)</li>
+      <li>Sheba Medical Center, Israel &mdash; physician pilot (active)</li>
+      <li>Meir Hospital, Israel &mdash; physician pilot (active)</li>
+      <li>Tel Aviv Medical Center / Ichilov &mdash; in discussions</li>
+      <li>Chiesi Farmaceutici, Italy &mdash; initial discussions</li>
+    </ul>
+  </div>
+
+  <!-- Slide 10 -->
+  <div class="slide-card">
+    <div><span class="slide-number">10</span><span class="slide-title">Team &amp; Ask</span></div>
+    <hr class="divider" style="margin: 12px 0;">
+
+    <h3>Founder</h3>
+    <p><strong>Ido Bachelet, Ph.D.</strong></p>
+    <ul>
+      <li>PhD Pharmacology &amp; Experimental Therapeutics Design, Hebrew University | MIT | Harvard/Wyss (George Church lab)</li>
+      <li>30+ patents including mRNA targeting and therapeutic oligonucleotide design</li>
+      <li>Co-founded 5 companies | EUR 310M+ raised</li>
+      <li>1E Therapeutics &mdash; EUR 110M seed, largest biotech seed in Israeli history</li>
+      <li>17 years in nucleic acid science, drug discovery, and computational biology</li>
+      <li>Publications: <a href="https://www.science.org/doi/10.1126/science.1214081"><em>Science</em></a>, <a href="https://www.nature.com/articles/nnano.2014.58"><em>Nature Nanotechnology</em></a>, <em>PNAS</em>, <em>Nature Protocols</em></li>
+    </ul>
+
+    <h3>Grant-funded roles</h3>
+    <ul>
+      <li>Full-stack engineer (50% position, 12 months)</li>
+      <li>External regulatory/clinical consultants</li>
+      <li>External legal counsel / IP prosecution</li>
+    </ul>
+
+    <h3 style="margin-top: 24px;">The Ask: EUR 1,050,000 <span class="badge badge-blue">Grant Only</span></h3>
+    <table>
+      <thead><tr><th>Use of Funds</th><th>EUR</th><th>%</th></tr></thead>
+      <tbody>
+        <tr><td>Personnel (founder 24mo + engineer 12mo at 50%)</td><td>526,000</td><td>50%</td></tr>
+        <tr><td>External consultants (regulatory, legal)</td><td>160,000</td><td>15%</td></tr>
+        <tr><td>Clinical validation studies</td><td>80,000</td><td>8%</td></tr>
+        <tr><td>Marketing &amp; patient outreach</td><td>124,000</td><td>12%</td></tr>
+        <tr><td>IT infrastructure</td><td>80,000</td><td>8%</td></tr>
+        <tr><td>Travel &amp; conferences</td><td>80,000</td><td>8%</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top: 12px;"><strong>Co-financing:</strong> EUR 450,000 (founder self-funding + projected revenue)</p>
+    <p><strong>Total project:</strong> EUR 1,500,000</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 7: VIDEO PITCH SCRIPT -->
+  <!-- ============================================================ -->
+  <hr class="divider-thick">
+
+  <div class="section-label">Section 7</div>
+  <h2>Video Pitch Script</h2>
+  <div class="section-meta">3 minutes &bull; ~430 words &bull; Featuring: Ido Bachelet, Ph.D.</div>
+
+  <div class="card">
+    <div class="script-direction">Production notes: Film in a clean, well-lit setting. Speak to camera, not from notes. No slides or graphics in the video. Professional but not formal. Total target: 2:50-2:55 to leave buffer before the hard 3:00 cutoff.</div>
+
+    <hr class="divider">
+
+    <div style="margin-bottom: 20px;">
+      <span class="timestamp">0:00 &ndash; 0:30</span><strong>THE PROBLEM</strong>
+      <p>Three hundred million people live with rare genetic diseases. Seventy percent of them are children. Most of these conditions don't even have a name &mdash; there's no Wikipedia page, no patient forum, no clinical trial. The families search everywhere. They talk to every specialist they can find. They pay for consultations, for opinions, for anything. Not because they expect a guarantee &mdash; because they need a fighting chance.</p>
+      <p>I know this because I've been one of those parents.</p>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <span class="timestamp">0:30 &ndash; 0:50</span><strong>THE PERSONAL</strong>
+      <p>My eldest daughter was born with her right leg atrophied and paralysed. For years, my wife and I walked around looking for any piece of information that could help &mdash; any trial, any experimental approach. We were not looking for certainty. We were looking for a path. That experience changed how I think about what patients actually need. Often, it's not a drug. It's information.</p>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <span class="timestamp">0:50 &ndash; 1:20</span><strong>WHY ASOs</strong>
+      <p>Antisense oligonucleotides &mdash; ASOs &mdash; are one of the most powerful tools we have for correcting genetic defects. More than a dozen are approved. The FDA has issued specific guidance for designing them for individual patients. The science works. The regulatory path exists. But in twenty years, fewer than a hundred patients have ever received a personalised ASO. The expertise to design one is locked inside a handful of companies and laboratories. It does not reach the people who need it. Not because anyone is blocking it &mdash; but because no infrastructure exists to deliver it.</p>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <span class="timestamp">1:20 &ndash; 2:00</span><strong>WHAT PEQULIAR DOES</strong>
+      <p>Pequliar is that infrastructure. A patient or a physician describes a mutation &mdash; uploads a medical record, a genetic test, or just types in plain language. An AI engine reasons through the biology, identifies the gene and the mechanism, and sends the target into a computational pipeline. That pipeline analyses how the RNA folds, how it resists correction, and applies over fifty quality checks built on seventeen years of my own experimental data &mdash; including atomic force microscopy and single-molecule spectroscopy &mdash; data nobody else has. Three minutes later, the patient has ranked, synthesis-ready ASO candidates. In validation, Pequliar recovered ASOs identical to approved drugs that took years to develop. In our physician pilot in Israel, it has already designed ASOs for children whose doctors considered it impossible.</p>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <span class="timestamp">2:00 &ndash; 2:30</span><strong>WHY ME</strong>
+      <p>I've spent seventeen years in nucleic acid science &mdash; from my PhD in pharmacology and experimental therapeutics design, through MIT and George Church's lab at Harvard, to co-founding five biotech companies that raised over three hundred million euros collectively. I built this platform because this is what my entire career has led to.</p>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <span class="timestamp">2:30 &ndash; 2:50</span><strong>THE ASK</strong>
+      <p>Pequliar is live. It works. It's already helping real patients. I'm requesting one million fifty thousand euros from the EIC to scale the platform to a hundred thousand patients within twenty-four months &mdash; through direct patient access, pharmaceutical partnerships, and AI health partnerships. The co-financing is covered.</p>
+    </div>
+
+    <div>
+      <span class="timestamp">2:50 &ndash; 3:00</span><strong>CLOSE</strong>
+      <p>Three hundred million people are waiting for a path. Pequliar is that path. Thank you.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <hr class="divider">
+  <div style="text-align: center; color: #94A3B8; font-size: 11px; padding: 20px 0;">
+    <p>Pequliar &bull; pequliar.ai &bull; EIC Accelerator Open 2026</p>
+    <p>Prepared June 2026 &bull; Confidential</p>
+  </div>
+
+</div>
+</body>
+</html>
