@@ -9,7 +9,7 @@ const projects = [
     title: "Jaunt",
     description: "A crypto token for RNA neuroactives",
     tags: [],
-    link: "#",
+    link: "https://www.etherealjaunt.com/",
   },
   {
     title: "Ribozymes",
@@ -27,13 +27,13 @@ const projects = [
     title: "Living Code",
     description: "RNA-based consumer products",
     tags: [],
-    link: "#",
+    link: "https://livingcode.bio/",
   },
   {
     title: "Phylo",
     description: "Social breeding of AI agents",
     tags: [],
-    link: "#",
+    link: "https://phylo.space/",
   },
 ];
 

@@ -5,14 +5,8 @@ export default function About() {
         <h2 className="font-heading text-3xl font-bold tracking-tight mb-8">About Me</h2>
         <div className="space-y-4 text-muted leading-relaxed">
           <p>
-            I&apos;m Ido Bachelet — a passionate developer and creator. I enjoy
-            building products that solve real problems and exploring new
-            technologies.
-          </p>
-          <p>
-            When I&apos;m not coding, you can find me reading, learning something
-            new, or working on side projects. I believe in continuous improvement
-            and sharing knowledge with others.
+            Ido Bachelet is a drug designer and developer operating in the
+            RNA/DNA space, pharmacologist, entrepreneur, and artist.
           </p>
         </div>
       </div>
