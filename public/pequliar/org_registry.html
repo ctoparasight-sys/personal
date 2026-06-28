@@ -129,6 +129,9 @@
   }
   .tabulator .tabulator-tableholder .tabulator-table .tabulator-row .tabulator-cell {
     border-right: 1px solid #F1F5F9;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
   .tabulator .tabulator-footer {
     background: #F8FAFC;
@@ -186,7 +189,7 @@ function clearFilters() {
 
 var table = new Tabulator("#table", {
   data: tableData,
-  layout: "fitDataStretch",
+  layout: "fitColumns",
   pagination: false,
   movableColumns: true,
   resizableColumns: true,
