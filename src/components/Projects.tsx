@@ -1,38 +1,37 @@
 const projects = [
   {
     title: "Pequliar",
-    description:
-      "ASO design platform for rare disease — predicts antisense oligonucleotide amenability across all pathogenic variants.",
+    description: "ASO design for rare genetic diseases.",
     tags: ["Python", "Machine Learning", "FastAPI", "Next.js"],
     link: "/projects/pequliar",
   },
   {
     title: "Jaunt",
-    description: "",
+    description: "A crypto token for RNA neuroactives.",
     tags: [],
     link: "#",
   },
   {
     title: "Ribozymes",
-    description: "",
+    description: "The first organisms on earth.",
     tags: [],
     link: "#",
   },
   {
     title: "Pianobiology",
-    description: "",
+    description: "Biology-inspired music.",
     tags: [],
     link: "#",
   },
   {
     title: "Living Code",
-    description: "",
+    description: "RNA-based consumer products.",
     tags: [],
     link: "#",
   },
   {
     title: "Phylo",
-    description: "",
+    description: "Social breeding of AI agents.",
     tags: [],
     link: "#",
   },
