@@ -25,5 +25,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/projects/pequliar", "/projects/pequliar/:path*", "/pequliar/:path*"],
+  matcher: ["/projects/pequliar/ido", "/projects/pequliar/ido/:path*", "/pequliar/:path*"],
 };
