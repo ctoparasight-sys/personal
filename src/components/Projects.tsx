@@ -39,7 +39,7 @@ const projects = [
     title: "CD19-CAR mRNA Design",
     description: "Computational optimization of IVT mRNA for CAR-T therapy",
     tags: [],
-    link: "https://deploy-five-psi-16.vercel.app",
+    link: "/car",
   },
 ];
 

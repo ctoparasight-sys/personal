@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CD19-CAR mRNA Optimization &mdash; Computational Design Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Roboto Mono', 'SF Mono', 'Menlo', 'Courier New', monospace;
+    font-weight: 300;
+    background: #FAFAF9;
+    color: #1E293B;
+    line-height: 1.7;
+    font-size: 13.5px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 56px 24px 80px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .logo {
+    display: inline-block;
+    font-size: 2.2rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: #0F172A;
+    border: 1px solid #0F172A;
+    border-radius: 12px;
+    padding: 0.1em 0.3em;
+    margin-bottom: 12px;
+  }
+
+  .tagline {
+    font-size: 1rem;
+    font-weight: 300;
+    color: #64748B;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #94A3B8;
+    letter-spacing: 0.05em;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid #E2E8F0;
+    margin: 40px 0;
+  }
+
+  .divider-thick {
+    border: none;
+    border-top: 2px solid #0F172A;
+    margin: 48px 0;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #2563EB;
+    margin-bottom: 8px;
+  }
+
+  .section-meta {
+    font-size: 11px;
+    font-weight: 400;
+    color: #94A3B8;
+    margin-bottom: 24px;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #0F172A;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #0F172A;
+    margin-bottom: 12px;
+    margin-top: 24px;
+  }
+
+  h4 {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #475569;
+    margin-bottom: 8px;
+    margin-top: 20px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    line-height: 1.75;
+  }
+
+  .lead {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #0F172A;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  strong {
+    font-weight: 500;
+    color: #0F172A;
+  }
+
+  em {
+    font-style: italic;
+    color: #475569;
+  }
+
+  a {
+    color: #2563EB;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .card-blue {
+    background: linear-gradient(to right, #EFF6FF, #F0F9FF);
+    border: 1px solid #BFDBFE;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .card-teal {
+    background: linear-gradient(to right, #F0FDFA, #ECFDF5);
+    border: 1px solid #99F6E4;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .card-amber {
+    background: linear-gradient(to right, #FFFBEB, #FEF3C7);
+    border: 1px solid #FDE68A;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .card-slate {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .card-rose {
+    background: linear-gradient(to right, #FFF1F2, #FFE4E6);
+    border: 1px solid #FECDD3;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .accent-left {
+    border-left: 4px solid #2563EB;
+    padding-left: 20px;
+  }
+
+  .accent-left-teal {
+    border-left: 4px solid #0D9488;
+    padding-left: 20px;
+  }
+
+  .accent-left-violet {
+    border-left: 4px solid #7C3AED;
+    padding-left: 20px;
+  }
+
+  .accent-left-rose {
+    border-left: 4px solid #E11D48;
+    padding-left: 20px;
+  }
+
+  .accent-left-amber {
+    border-left: 4px solid #D97706;
+    padding-left: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 12.5px;
+  }
+
+  th {
+    text-align: left;
+    font-weight: 400;
+    color: #64748B;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 10px;
+    padding: 8px 12px;
+    border-bottom: 1px solid #E2E8F0;
+    background: #F8FAFC;
+  }
+
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #F1F5F9;
+    vertical-align: top;
+  }
+
+  tr:hover {
+    background: #F8FAFC;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.03em;
+  }
+
+  .badge-blue {
+    background: #EFF6FF;
+    color: #1D4ED8;
+    border: 1px solid #BFDBFE;
+  }
+
+  .badge-emerald {
+    background: #D1FAE5;
+    color: #047857;
+    border: 1px solid #A7F3D0;
+  }
+
+  .badge-amber {
+    background: #FEF3C7;
+    color: #B45309;
+    border: 1px solid #FDE68A;
+  }
+
+  .badge-slate {
+    background: #F1F5F9;
+    color: #475569;
+    border: 1px solid #E2E8F0;
+  }
+
+  .badge-rose {
+    background: #FFE4E6;
+    color: #BE123C;
+    border: 1px solid #FECDD3;
+  }
+
+  ul, ol {
+    margin: 12px 0 16px 20px;
+    line-height: 1.8;
+  }
+
+  li {
+    margin-bottom: 4px;
+  }
+
+  blockquote {
+    border-left: 3px solid #CBD5E1;
+    padding-left: 16px;
+    margin: 16px 0;
+    color: #475569;
+    font-style: italic;
+  }
+
+  .formula {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.9;
+    overflow-x: auto;
+    white-space: pre-wrap;
+  }
+
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .metric-box {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .metric-value {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #0F172A;
+    line-height: 1.2;
+  }
+
+  .metric-label {
+    font-size: 10px;
+    font-weight: 400;
+    color: #64748B;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+  }
+
+  .metric-sub {
+    font-size: 10px;
+    color: #94A3B8;
+    margin-top: 2px;
+  }
+
+  .ref-list {
+    list-style: none;
+    margin-left: 0;
+    counter-reset: ref-counter;
+  }
+
+  .ref-list li {
+    counter-increment: ref-counter;
+    padding-left: 28px;
+    position: relative;
+    margin-bottom: 12px;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .ref-list li::before {
+    content: counter(ref-counter) ".";
+    position: absolute;
+    left: 0;
+    font-weight: 500;
+    color: #64748B;
+  }
+
+  .figure {
+    margin: 24px 0;
+    page-break-inside: avoid;
+  }
+
+  .figure img {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #E2E8F0;
+    display: block;
+  }
+
+  .figure-caption {
+    margin-top: 12px;
+    padding: 12px 16px;
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 0 0 8px 8px;
+    margin-top: -1px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #475569;
+  }
+
+  .figure-label {
+    font-weight: 600;
+    color: #0F172A;
+    font-size: 11px;
+  }
+
+  .figure-generation {
+    display: block;
+    margin-top: 8px;
+    font-size: 10.5px;
+    color: #94A3B8;
+    line-height: 1.6;
+    border-top: 1px solid #E2E8F0;
+    padding-top: 8px;
+  }
+
+  @media print {
+    body { background: white; font-size: 12px; }
+    .container { max-width: 100%; padding: 20px; }
+    .card, .card-blue, .card-teal, .card-amber, .card-slate, .card-rose {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .divider-thick { page-break-before: always; }
+    .no-break { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- TITLE BLOCK -->
+  <div class="card-blue" style="margin-top: 8px;">
+    <p class="lead" style="margin-bottom: 8px;"><strong>Computational Design and Optimization of CD19-CAR mRNA Constructs for Enhanced Expression and Reduced Immunogenicity</strong></p>
+    <p style="margin-bottom: 0; font-size: 12px; color: #475569;">Systematic codon optimization, UTR engineering, and poly(A) tail configuration for IVT mRNA encoding FMC63-28-Z CAR with 1XX ITAM modifications.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="card-slate" style="padding: 20px 24px;">
+    <div class="section-label">Contents</div>
+    <table style="margin: 0;">
+      <tr><td style="border: none; padding: 4px 12px; width: 28px;">1</td><td style="border: none; padding: 4px 12px;">Abstract</td></tr>
+      <tr><td style="border: none; padding: 4px 12px;">2</td><td style="border: none; padding: 4px 12px;">Introduction</td></tr>
+      <tr><td style="border: none; padding: 4px 12px;">3</td><td style="border: none; padding: 4px 12px;">Methods</td></tr>
+      <tr><td style="border: none; padding: 4px 12px;">4</td><td style="border: none; padding: 4px 12px;">Results</td><td style="border: none; padding: 4px 12px; color: #94A3B8; text-align: right;">9 figures</td></tr>
+      <tr><td style="border: none; padding: 4px 12px;">5</td><td style="border: none; padding: 4px 12px;">Discussion</td></tr>
+      <tr><td style="border: none; padding: 4px 12px;">6</td><td style="border: none; padding: 4px 12px;">Construct Catalog</td><td style="border: none; padding: 4px 12px; color: #94A3B8; text-align: right;">30 candidates</td></tr>
+      <tr><td style="border: none; padding: 4px 12px;">7</td><td style="border: none; padding: 4px 12px;">References</td></tr>
+    </table>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 1: ABSTRACT -->
+  <!-- ============================================================ -->
+  <hr class="divider-thick">
+
+  <div class="section-label">Section 1</div>
+  <h2>Abstract</h2>
+  <div class="section-meta">Summary of computational design and key findings</div>
+
+  <div class="card">
+    <p>In vitro-transcribed (IVT) mRNA encoding chimeric antigen receptors (CARs) offers transient expression ideal for safety-constrained CAR-T cell therapies, but mRNA stability and immunogenicity remain limiting factors. Here, we computationally designed and analyzed 30 optimized mRNA constructs encoding a CD19-specific CAR (FMC63-28-Z with 1XX ITAM modifications) by systematically varying the coding sequence (CDS) codon usage, 5&rsquo; and 3&rsquo; untranslated regions (UTRs), and poly(A) tail configuration.</p>
+
+    <p>Using a species-aware deep learning model for codon optimization, we generated 290 CDS variants and mapped the design space using UMAP dimensionality reduction across 13 biophysical features. In parallel, we analyzed 257 3&rsquo;UTR designs incorporating conventional elements (HBA1, HBB, AES-mtRNR1) alongside structured RNA elements &mdash; including MALAT1 ENE triple helices, flaviviral xrRNA pseudoknots, terminal hairpins, and RNA origami tiles &mdash; scoring each for predicted stability and expression potential.</p>
+
+    <p style="margin-bottom: 0;">All 27 optimized constructs maintain identical protein sequence to the reference CAR. The redesigned panel incorporates 8 structured 3&rsquo;UTR variants and 2 poly(A) loop designs that exploit RNA secondary structure for exonuclease protection, representing a new design dimension beyond conventional sequence composition optimization.</p>
+  </div>
+
+  <!-- KEY METRICS -->
+  <div class="metric-grid">
+    <div class="metric-box">
+      <div class="metric-value" style="color: #2563EB;">78%</div>
+      <div class="metric-label">CpG reduction</div>
+      <div class="metric-sub">77 &rarr; 17</div>
+    </div>
+    <div class="metric-box">
+      <div class="metric-value" style="color: #0D9488;">32%</div>
+      <div class="metric-label">UpA reduction</div>
+      <div class="metric-sub">44 &rarr; 30</div>
+    </div>
+    <div class="metric-box">
+      <div class="metric-value" style="color: #7C3AED;">290</div>
+      <div class="metric-label">CDS variants</div>
+      <div class="metric-sub">the codon optimization model</div>
+    </div>
+    <div class="metric-box">
+      <div class="metric-value" style="color: #D97706;">257</div>
+      <div class="metric-label">3&rsquo;UTR designs</div>
+      <div class="metric-sub">6 base + 8 structured</div>
+    </div>
+  </div>
+
+  <div class="card-teal">
+    <div class="accent-left-teal">
+      <p style="margin-bottom: 0;"><strong>The primary optimized construct achieves a 78% reduction in immunostimulatory CpG dinucleotides (77 to 17), a 32% reduction in destabilizing UpA motifs, and incorporates the TIGIT 5&rsquo;UTR shown by Cafri et al. to maximize CAR-T cell reactivity with minimal tonic signaling.</strong></p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 2: INTRODUCTION -->
+  <!-- ============================================================ -->
+  <hr class="divider-thick">
+
+  <div class="section-label">Section 2</div>
+  <h2>Introduction</h2>
+  <div class="section-meta">Background and rationale for computational mRNA optimization</div>
+
+  <div class="card">
+    <p>Chimeric antigen receptor (CAR) T cell therapy has demonstrated remarkable efficacy in hematological malignancies, with CD19-targeted products achieving durable responses in B cell lymphomas and leukemias. While most approved CAR-T products use retroviral or lentiviral vectors for stable CAR integration, mRNA-based transient CAR expression offers distinct advantages: no risk of insertional mutagenesis, controllable expression duration, and simplified manufacturing (Zhao et al., 2010).</p>
+
+    <p>However, IVT mRNA-based CAR-T cells face challenges including limited mRNA half-life, innate immune activation through pattern recognition receptors, and suboptimal translation efficiency. These factors collectively reduce the magnitude and duration of CAR surface expression, impacting therapeutic efficacy.</p>
+  </div>
+
+  <div class="card">
+    <h3>Sequence-Level Determinants of mRNA Performance</h3>
+
+    <p>Several sequence-level features influence mRNA performance:</p>
+
+    <table>
+      <thead>
+        <tr><th>Feature</th><th>Mechanism</th><th>Impact</th></tr>
+      </thead>
+      <tbody>
+        <tr><td style="font-weight: 500;">CpG dinucleotides</td><td>Activate TLR9 and innate immune sensors</td><td>Reduced stability, inflammatory response</td></tr>
+        <tr><td style="font-weight: 500;">UpA dinucleotides</td><td>Cleavage sites for RNase L</td><td>Accelerated mRNA degradation</td></tr>
+        <tr><td style="font-weight: 500;">Codon usage</td><td>Ribosome elongation speed</td><td>Codon optimality-mediated decay</td></tr>
+        <tr><td style="font-weight: 500;">5&rsquo; and 3&rsquo; UTR elements</td><td>Translation initiation, stability, localization</td><td>Expression magnitude and duration</td></tr>
+        <tr><td style="font-weight: 500;">Poly(A) tail</td><td>PABP binding, exonuclease protection</td><td>mRNA half-life</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card-slate">
+    <p style="margin-bottom: 0;">Recent advances in deep learning for mRNA design now enable systematic exploration of the sequence design space beyond what traditional codon optimization tables allow. Here, we built a computational pipeline that draws on multiple state-of-the-art models to comprehensively optimize a clinical-grade CD19-CAR mRNA construct.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 3: METHODS -->
+  <!-- ============================================================ -->
+  <hr class="divider-thick">
+
+  <div class="section-label">Section 3</div>
+  <h2>Methods</h2>
+  <div class="section-meta">Computational pipeline for multi-component mRNA optimization</div>
+
+  <!-- 3A: Construct Architecture -->
+  <div class="card">
+    <h3>A. Construct Architecture</h3>
+
+    <p>The starting construct encodes the FMC63-28-Z CD19-CAR with 1XX ITAM modifications (functional ITAM1, mutated ITAM2 and ITAM3 in the CD3-zeta domain), provided as a SnapGene .dna file.</p>
+
+    <div class="card-slate" style="padding: 16px; margin-top: 12px;">
+      <table style="margin: 0;">
+        <thead>
+          <tr><th>Component</th><th>Element</th><th>Length</th></tr>
+        </thead>
+        <tbody>
+          <tr><td style="font-weight: 500;">5&rsquo;UTR</td><td>HBA2</td><td style="text-align: right;">54 bp</td></tr>
+          <tr><td style="font-weight: 500;">Kozak</td><td>GCCACC consensus</td><td style="text-align: right;">6 bp</td></tr>
+          <tr><td style="font-weight: 500;">CDS</td><td>FMC63-28-Z-1XX CAR</td><td style="text-align: right;">1,470 bp</td></tr>
+          <tr><td style="font-weight: 500;">3&rsquo;UTR</td><td>HBA1</td><td style="text-align: right;">110 bp</td></tr>
+          <tr><td style="font-weight: 500;">Poly(A)</td><td>A60-G-A60</td><td style="text-align: right;">121 bp</td></tr>
+          <tr style="border-top: 1px solid #E2E8F0;"><td style="font-weight: 500;" colspan="2">Total</td><td style="text-align: right; font-weight: 500;">1,755 bp</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 3B: CDS Codon Optimization -->
+  <div class="card">
+    <h3>B. CDS Codon Optimization</h3>
+
+    <p>We built a codon optimization pipeline trained on the outputs of several state-of-the-art deep learning models for mRNA design, including CodonTransformer (Fallahpour et al., 2025), RiboDecode (Li et al., 2025), and mRNABERT (Niu et al., 2025). The pipeline uses a BigBird-based architecture with species-specific codon usage patterns to generate optimized CDS variants. It was run with human-specific tokenization on the 489-amino acid CAR protein (plus stop codon). We systematically varied two sampling parameters:</p>
+
+    <ul>
+      <li><strong>Temperature</strong> (0.1 to 1.5, 12 values) &mdash; controls diversity of codon choices</li>
+      <li><strong>Top-p</strong> (0.5 to 1.0, 6 values) &mdash; nucleus sampling threshold</li>
+    </ul>
+
+    <p style="margin-bottom: 0;">Four stochastic samples were generated per parameter combination, plus one deterministic baseline, yielding <strong>290 total CDS sequences</strong> (1 original + 1 deterministic + 288 stochastic).</p>
+  </div>
+
+  <!-- 3C: CDS Feature Analysis -->
+  <div class="card">
+    <h3>C. CDS Feature Analysis</h3>
+
+    <p>For each CDS variant, we computed 13 biophysical features: GC content, CpG dinucleotide count, UpA dinucleotide count, uridine fraction, optimal codon fraction, codon Shannon entropy, GC content at third codon positions (GC3), rare codon fraction (codons with &lt;10% usage in human), CpG and UpA density per kilobase, and individual nucleotide fractions (A, C, G, T). Protein identity to the reference sequence was verified for all variants.</p>
+
+    <h4>Composite Desirability Score</h4>
+    <div class="formula">Score = &minus;0.30 &times; CpG_norm &minus; 0.20 &times; UpA_norm + 0.20 &times; OptimalCodons
+       + 0.15 &times; GC + 0.10 &times; Uridine_norm &minus; 0.05 &times; RareCodons_norm</div>
+
+    <table>
+      <thead>
+        <tr><th>Weight</th><th>Feature</th><th>Rationale</th></tr>
+      </thead>
+      <tbody>
+        <tr><td style="font-weight: 500;">&minus;0.30</td><td>CpG count</td><td>Immunogenicity (TLR9 activation)</td></tr>
+        <tr><td style="font-weight: 500;">&minus;0.20</td><td>UpA count</td><td>RNase L susceptibility</td></tr>
+        <tr><td style="font-weight: 500;">+0.20</td><td>Optimal codons</td><td>Translation efficiency</td></tr>
+        <tr><td style="font-weight: 500;">+0.15</td><td>GC content</td><td>Thermodynamic stability</td></tr>
+        <tr><td style="font-weight: 500;">+0.10</td><td>Uridine content</td><td>Pseudouridine substitution efficiency</td></tr>
+        <tr><td style="font-weight: 500;">&minus;0.05</td><td>Rare codons</td><td>Ribosome stalling avoidance</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 3D: 3'UTR Design -->
+  <div class="card">
+    <h3>D. 3&rsquo;UTR Design and Analysis</h3>
+
+    <p>We constructed a library of 257 3&rsquo;UTR designs by combining, mutating, modifying, and structurally engineering six known functional elements plus novel structural RNA motifs:</p>
+
+    <table>
+      <thead>
+        <tr><th>Element</th><th>Source</th><th>Length</th></tr>
+      </thead>
+      <tbody>
+        <tr><td style="font-weight: 500;">HBA1</td><td>Human alpha-globin 1 (original construct)</td><td style="text-align: right;">110 bp</td></tr>
+        <tr><td style="font-weight: 500;">HBB</td><td>Human beta-globin (Moderna mRNA-1273)</td><td style="text-align: right;">134 bp</td></tr>
+        <tr><td style="font-weight: 500;">AES</td><td>Amino-terminal enhancer of split (BNT162b2)</td><td style="text-align: right;">135 bp</td></tr>
+        <tr><td style="font-weight: 500;">mtRNR1</td><td>Mitochondrial 12S rRNA (BNT162b2)</td><td style="text-align: right;">189 bp</td></tr>
+        <tr><td style="font-weight: 500;">AES+mtRNR1</td><td>Combined BioNTech element</td><td style="text-align: right;">323 bp</td></tr>
+        <tr><td style="font-weight: 500;">WPRE-alpha</td><td>Woodchuck Hepatitis Virus element</td><td style="text-align: right;">80 bp</td></tr>
+      </tbody>
+    </table>
+
+    <p>Design categories included:</p>
+    <div class="metric-grid" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="metric-box">
+        <div class="metric-value" style="font-size: 1.2rem; color: #2563EB;">36</div>
+        <div class="metric-label">Base elements</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-value" style="font-size: 1.2rem; color: #0D9488;">30</div>
+        <div class="metric-label">Tandem/chimeric</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-value" style="font-size: 1.2rem; color: #7C3AED;">96</div>
+        <div class="metric-label">Point mutants</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-value" style="font-size: 1.2rem; color: #D97706;">12</div>
+        <div class="metric-label">CpG-depleted</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-value" style="font-size: 1.2rem; color: #E11D48;">18</div>
+        <div class="metric-label">Truncation</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-value" style="font-size: 1.2rem; color: #059669;">16</div>
+        <div class="metric-label">Structured</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-value" style="font-size: 1.2rem; color: #64748B;">49</div>
+        <div class="metric-label">Other variants</div>
+      </div>
+    </div>
+
+    <h4>Scoring Functions</h4>
+    <div class="formula">Stability = 0.25 &times; GC + 0.25 &times; MFE/nt + 0.20 &times; (1&minus;UpA_norm)
+           + 0.15 &times; (1&minus;ARE_norm) + 0.15 &times; (1&minus;CpG_norm)
+
+Expression = 0.40 &times; Stability + 0.20 &times; (1&minus;CpG_norm) + 0.15 &times; PolyA_signal
+             + 0.15 &times; Entropy + 0.10 &times; (1&minus;Length_norm)</div>
+
+    <p style="margin-bottom: 0;">MFE of predicted secondary structure was computed using RNA secondary structure prediction (RNAfold).</p>
+  </div>
+
+  <!-- 3D2: Structured 3'UTR Elements -->
+  <div class="card-teal">
+    <h3 style="margin-top: 0;">D2. Structured 3&rsquo;UTR Elements</h3>
+
+    <p>Beyond conventional UTR elements selected for sequence composition, we designed 8 structured 3&rsquo;UTR variants that exploit RNA secondary and tertiary structure to physically block exonuclease access to the mRNA 3&rsquo; end:</p>
+
+    <table>
+      <thead>
+        <tr><th>Element</th><th>Mechanism</th><th>Source</th><th style="text-align: right;">Length</th></tr>
+      </thead>
+      <tbody>
+        <tr><td style="font-weight: 500;">MALAT1 ENE</td><td>U&middot;A-U triple helix buries 3&rsquo; end</td><td>Wilusz, <em>Genes Dev</em> 2012</td><td style="text-align: right;">57 nt</td></tr>
+        <tr><td style="font-weight: 500;">xrRNA pseudoknot</td><td>Ring topology blocks Xrn1 mechanically</td><td>Chapman et al., <em>Science</em> 2014</td><td style="text-align: right;">69 nt</td></tr>
+        <tr><td style="font-weight: 500;">Terminal hairpin</td><td>GC-rich stem + UUCG tetraloop caps terminus</td><td>Gene Therapy 2023</td><td style="text-align: right;">33 nt</td></tr>
+        <tr><td style="font-weight: 500;">RNA origami tile</td><td>Kissing-loop DX junction scaffold</td><td>Geary et al., <em>Science</em> 2014</td><td style="text-align: right;">136 nt</td></tr>
+      </tbody>
+    </table>
+
+    <p>Each structural element was appended to the CpG-depleted HBA1 3&rsquo;UTR or used as a standalone UTR. We also designed a &ldquo;double-shield&rdquo; variant combining the terminal hairpin and ENE element, and a CpG-depleted ENE variant (CG&rarr;CA substitutions preserving triple-helix base triples).</p>
+
+    <h4>Poly(A) Loop Structures</h4>
+    <p style="margin-bottom: 0;">Inspired by Oh et al. (<em>npj Vaccines</em>, 2025), we designed two poly(A) loop configurations where self-complementary sequences flanking the poly(A) tail form protective stem-loop structures against CCR4-NOT deadenylation: A50-loop-A50 (18 nt palindromic linker) and A30-hairpin-A70 (31 nt GC-rich hairpin at the junction).</p>
+  </div>
+
+  <!-- 3E: 5'UTR Selection -->
+  <div class="card-blue">
+    <h3 style="margin-top: 0;">E. 5&rsquo;UTR Selection</h3>
+    <div class="accent-left">
+      <p>Based on the findings of Cafri and colleagues (PMID 42028577), who screened 13 5&rsquo;UTRs derived from highly expressed T cell genes for CD19-CAR mRNA constructs, we selected the <strong>TIGIT 5&rsquo;UTR</strong> (34 bp; GenBank NM_173799.4).</p>
+      <p style="margin-bottom: 0;">This UTR demonstrated maximal CAR surface expression and anti-tumor reactivity with minimal tonic signaling and TIM-3 upregulation in primary human T cells, outperforming the commonly used HBA1/HBA2 UTRs.</p>
+    </div>
+  </div>
+
+  <!-- 3F: UMAP -->
+  <div class="card">
+    <h3>F. Dimensionality Reduction</h3>
+    <p style="margin-bottom: 0;">UMAP (Uniform Manifold Approximation and Projection; McInnes et al., 2018) was applied to standardized feature matrices for both CDS and 3&rsquo;UTR analyses (n_neighbors=15, min_dist=0.1&ndash;0.15, Euclidean metric, random_state=42), with features Z-score normalized prior to embedding.</p>
+  </div>
+
+  <!-- 3G: Final Assembly -->
+  <div class="card">
+    <h3>G. Final Construct Assembly</h3>
+    <p>Thirty complete mRNA constructs were assembled combining optimized components:</p>
+    <table>
+      <thead>
+        <tr><th>Component</th><th>Options Tested</th></tr>
+      </thead>
+      <tbody>
+        <tr><td style="font-weight: 500;">5&rsquo;UTR</td><td>TIGIT (34 bp) or HBA2 (48 bp) + Kozak consensus (GCCACC)</td></tr>
+        <tr><td style="font-weight: 500;">CDS</td><td>Top-scoring optimized variants, deterministic baseline, or original</td></tr>
+        <tr><td style="font-weight: 500;">3&rsquo;UTR</td><td>HBA1, CpG-depleted HBA1, HBB, AES+mtRNR1, or structured variants (ENE, xrRNA, hairpin, origami tile, double-shield)</td></tr>
+        <tr><td style="font-weight: 500;">Poly(A)</td><td>A120, A60-G-A60, A100, or loop structures (A50-loop-A50, A30-hp-A70)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 4: RESULTS -->
+  <!-- ============================================================ -->
+  <hr class="divider-thick">
+
+  <div class="section-label">Section 4</div>
+  <h2>Results</h2>
+  <div class="section-meta">CDS optimization, 3&rsquo;UTR landscape, and final construct panel</div>
+
+  <!-- 4A: CDS Results -->
+  <div class="card">
+    <h3>A. CDS Optimization Reveals CpG-Diversity Trade-off</h3>
+
+    <p>Of 290 generated CDS variants, 275 (94.8%) maintained perfect protein identity to the reference CAR sequence. UMAP analysis revealed that the CDS design space is structured primarily along two axes: CpG content/immunogenicity and codon diversity/GC content (Fig. 1).</p>
+
+    <p>Low-temperature sampling (T = 0.1&ndash;0.6) with restricted nucleus sampling (top_p = 0.5) consistently produced CDS variants with the lowest CpG counts (16&ndash;19, compared to 72 in the original), while maintaining &gt;65% optimal codon usage. Higher temperatures introduced greater codon diversity but at the cost of increased CpG dinucleotides and reduced translational optimality.</p>
+  </div>
+
+  <!-- FIGURE 1: CDS UMAP Multipanel -->
+  <div class="figure">
+    <img src="umap_multipanel.png" alt="UMAP analysis of 290 codon-optimized CDS variants colored by six biophysical features">
+    <div class="figure-caption">
+      <span class="figure-label">Figure 1. UMAP embedding of 290 codon-optimized CDS variants colored by six biophysical features.</span> Each point represents a CDS variant generated by the codon optimization model. The six panels show the same UMAP embedding colored by: CpG dinucleotide count (top left), UpA dinucleotide count (top center), optimal codon fraction (top right), GC content (bottom left), uridine content (bottom center), and composite desirability score (bottom right). The black star marks the original construct; the red diamond marks the deterministic the codon optimization model output. The design space separates along a diagonal axis from high-CpG/high-diversity (upper right) to low-CpG/high-optimality (lower left). The most desirable variants (dark green, bottom right panel) cluster in the lower-left region, corresponding to low CpG counts, high GC content, and high optimal codon fractions.
+      <span class="figure-generation">Generated by umap_analysis.py using UMAP (n_neighbors=15, min_dist=0.1, Euclidean metric) on 13 Z-score-normalized biophysical features computed for each CDS variant. Matplotlib scatter plots with continuous colormaps.</span>
+    </div>
+  </div>
+
+  <!-- FIGURE 2: Temperature Effect -->
+  <div class="figure">
+    <img src="umap_temperature.png" alt="Effect of the codon optimization model temperature on CDS properties">
+    <div class="figure-caption">
+      <span class="figure-label">Figure 2. Effect of the codon optimization model sampling temperature on CDS sequence properties.</span> <strong>Left:</strong> UMAP embedding colored by generation temperature (0.1&ndash;1.5). Low temperatures (purple/blue) cluster tightly in the low-CpG region, while high temperatures (yellow) scatter toward the upper right, producing more diverse but less optimized sequences. <strong>Center:</strong> CpG dinucleotide count as a function of temperature, colored by top-p value. The dashed line marks the original construct (72 CpG). All the codon optimization model outputs achieve substantial CpG reduction, with the lowest counts (16&ndash;19) at T &le; 0.6. <strong>Right:</strong> Optimal codon fraction vs temperature. The original construct uses 71.8% optimal codons (dashed line); optimized variants achieve 60&ndash;67%, with the best balance at T = 0.2&ndash;0.6. This reveals the key design trade-off: low temperatures maximize CpG depletion but modestly reduce codon optimality.
+      <span class="figure-generation">Generated by umap_analysis.py. Temperature and top-p were systematically varied across 72 parameter combinations with 4 stochastic replicates each, producing 288 stochastic variants plus 1 deterministic and 1 original.</span>
+    </div>
+  </div>
+
+  <div class="card-teal">
+    <h4 style="margin-top: 0; color: #0F172A;">Top-Scoring CDS Variant</h4>
+    <p style="margin-bottom: 8px;"><span class="badge badge-emerald">CT_t0.6_p0.5_r1</span> &nbsp; <span class="badge badge-blue">Desirability = 1.000</span></p>
+    <div class="metric-grid" style="grid-template-columns: repeat(4, 1fr);">
+      <div class="metric-box" style="background: rgba(255,255,255,0.7);">
+        <div class="metric-value" style="font-size: 1.3rem; color: #2563EB;">16</div>
+        <div class="metric-label">CpG</div>
+        <div class="metric-sub">&minus;78% from 72</div>
+      </div>
+      <div class="metric-box" style="background: rgba(255,255,255,0.7);">
+        <div class="metric-value" style="font-size: 1.3rem; color: #0D9488;">30</div>
+        <div class="metric-label">UpA</div>
+        <div class="metric-sub">&minus;32% from 44</div>
+      </div>
+      <div class="metric-box" style="background: rgba(255,255,255,0.7);">
+        <div class="metric-value" style="font-size: 1.3rem; color: #7C3AED;">59.4%</div>
+        <div class="metric-label">GC content</div>
+        <div class="metric-sub">vs 58.2% orig</div>
+      </div>
+      <div class="metric-box" style="background: rgba(255,255,255,0.7);">
+        <div class="metric-value" style="font-size: 1.3rem; color: #D97706;">65.1%</div>
+        <div class="metric-label">Optimal codons</div>
+        <div class="metric-sub">human codon table</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIGURE 3: CDS Trade-offs -->
+  <div class="figure">
+    <img src="umap_tradeoffs.png" alt="Key trade-offs in mRNA codon optimization">
+    <div class="figure-caption">
+      <span class="figure-label">Figure 3. Key trade-offs in CDS codon optimization.</span> Three pairwise feature comparisons reveal the design constraints governing mRNA optimization, with points colored by composite desirability score (green = higher). <strong>Left:</strong> CpG count vs optimal codon fraction. A shaded &ldquo;ideal zone&rdquo; marks the target region of low CpG and high codon optimality. The original construct (star) has high optimality but excessive CpG; the best optimized variants (red diamond region) achieve &le;20 CpG while maintaining ~65% optimal codons. <strong>Center:</strong> GC content vs UpA count. High-GC variants naturally have fewer UpA dinucleotides, and the highest-scoring variants cluster in the upper-right (high GC, low UpA). <strong>Right:</strong> Uridine content vs CpG count. Low uridine correlates with low CpG, reflecting the underlying nucleotide composition constraints. The top candidates simultaneously minimize both immunostimulatory features.
+      <span class="figure-generation">Generated by umap_analysis.py. Each point is one of 290 CDS variants. Desirability score computed as the weighted combination of 6 normalized features (see Methods).</span>
+    </div>
+  </div>
+
+  <!-- FIGURE 4: CDS Correlations -->
+  <div class="figure">
+    <img src="umap_correlations.png" alt="Correlation heatmap of CDS optimization metrics">
+    <div class="figure-caption">
+      <span class="figure-label">Figure 4. Pearson correlation matrix of CDS biophysical features and desirability score.</span> Computed across all 290 CDS variants. CpG count is strongly anti-correlated with GC% (<em>r</em> = &minus;0.75), optimal codon fraction (<em>r</em> = &minus;0.71), and the composite score (<em>r</em> = &minus;0.95). GC content is nearly perfectly correlated with GC3 position content (<em>r</em> = 0.99) and optimal codon fraction (<em>r</em> = 0.97), confirming that human codon bias favors GC-rich codons. Codon entropy &mdash; a measure of codon diversity &mdash; is strongly positively correlated with CpG (<em>r</em> = 0.77) and UpA (<em>r</em> = 0.91), indicating that more diverse codon usage inevitably introduces more immunostimulatory motifs. The composite desirability score captures all of these relationships, with the strongest negative loadings on CpG (<em>r</em> = &minus;0.95) and UpA (<em>r</em> = &minus;0.95).
+      <span class="figure-generation">Generated by umap_analysis.py using Pearson correlation coefficients. Heatmap rendered with seaborn with annotations showing <em>r</em> values.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <p style="margin-bottom: 0;">Correlation analysis confirmed strong negative relationships between CpG count and GC content (<em>r</em> = &minus;0.75), and between optimal codon fraction and CpG count (<em>r</em> = &minus;0.71), reflecting the inherent trade-off between CpG depletion and codon optimality in GC-rich genomes (Fig. 4). Codon entropy, measuring the diversity of codon choices, showed strong positive correlation with both CpG (<em>r</em> = 0.77) and UpA (<em>r</em> = 0.91), indicating that more varied codon usage inevitably introduces immunostimulatory motifs.</p>
+  </div>
+
+  <!-- 4B: 3'UTR Results -->
+  <div class="card">
+    <h3>B. 3&rsquo;UTR Element Space is Dominated by Composition and Length</h3>
+
+    <p>UMAP analysis of 257 3&rsquo;UTR designs revealed clear clustering by element identity, with HBA1, HBB, AES, and mtRNR1 variants occupying distinct regions of feature space (Fig. 5). The 16 structured variants (ENE, xrRNA, hairpin, origami tile) formed a distinct cluster characterized by highly negative MFE values, reflecting their designed secondary and tertiary structures. The primary drivers of separation were GC content, length, CpG density, and structural stability (MFE).</p>
+  </div>
+
+  <!-- FIGURE 5: 3'UTR UMAP Metrics -->
+  <div class="figure">
+    <img src="utr3_umap_metrics.png" alt="UMAP analysis of 241 3'UTR designs colored by six biophysical metrics">
+    <div class="figure-caption">
+      <span class="figure-label">Figure 5. UMAP embedding of 257 3&rsquo;UTR designs colored by six biophysical metrics.</span> Each point represents a 3&rsquo;UTR design variant. The six panels show: GC content (top left), CpG dinucleotide count (top center), UpA count (top right), MFE per nucleotide from RNA structure prediction (bottom left), predicted stability score (bottom center), and expression potential score (bottom right). The black star marks the current HBA1 3&rsquo;UTR. Distinct element families form well-separated clusters: HBA1 variants (bottom center), HBB variants (bottom right), AES+mtRNR1 variants (upper left, high CpG/UpA), and synthetic sequences (scattered). The highest stability and expression scores (dark green, bottom panels) concentrate in the HBA1 cluster region, reflecting the advantage of compact, GC-rich UTR elements for mRNA stability.
+      <span class="figure-generation">Generated by utr3_umap_analysis.py. UMAP computed on 15 Z-score-normalized features (n_neighbors=15, min_dist=0.15). MFE calculated using RNAfold (RNA structure prediction v2.7.2) via batch FASTA input. 257 designs from 6 base elements + 8 structured motifs across 10 design categories.</span>
+    </div>
+  </div>
+
+  <!-- FIGURE 6: 3'UTR Elements and Categories -->
+  <div class="figure">
+    <img src="utr3_umap_elements.png" alt="3'UTR design space colored by element type and design category">
+    <div class="figure-caption">
+      <span class="figure-label">Figure 6. 3&rsquo;UTR design space colored by UTR element identity (left) and design category (right).</span> <strong>Left:</strong> Each UTR element type occupies a distinct region of the UMAP embedding, confirming that element identity dominates the feature space. HBA1 variants (red cluster, bottom center) and HBB variants (dark red, bottom right) separate clearly from AES+mtRNR1 (green, upper left) and synthetic sequences (gray, scattered). Tandem and chimeric elements (e.g., HBA1+HBB, AES+HBA1) appear at intermediate positions. <strong>Right:</strong> Coloring by design category reveals that mutant variants (green) cluster near their parent elements, CpG-depleted variants (purple) shift modestly from base designs, and synthetic sequences (gray) span a wide range reflecting their engineered GC compositions. This validates our design strategy: modifications preserve the core biophysical character of each element while selectively tuning specific features.
+      <span class="figure-generation">Generated by utr3_umap_analysis.py. Same UMAP embedding as Fig. 5, recolored by categorical labels. Element types include 16 distinct categories; design categories include Base, Tandem, Mutant, CpG-depleted, UpA-depleted, GC-enriched, Truncated, Shuffled, Synthetic, and Structured.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <p>The current HBA1 3&rsquo;UTR ranked <strong>#19 out of 257 designs</strong> (desirability = 0.881), performing well due to its high GC content (66.4%) and compact length (110 bp), with only 4 CpG dinucleotides. CpG depletion (replacing CG&rarr;CA) eliminated all 4 remaining CpG sites while preserving GC content at 62.7%, improving the desirability rank to <strong>#7</strong> (Fig. 8).</p>
+  </div>
+
+  <!-- FIGURE 7: 3'UTR Trade-offs -->
+  <div class="figure">
+    <img src="utr3_tradeoffs.png" alt="Key trade-offs in 3'UTR design for mRNA stability and expression">
+    <div class="figure-caption">
+      <span class="figure-label">Figure 7. Key trade-offs in 3&rsquo;UTR design for mRNA stability and expression.</span> <strong>Left:</strong> CpG count vs MFE per nucleotide (kcal/mol/nt), colored by desirability score. The ideal zone (shaded green) combines low CpG (&le;5) with moderately negative MFE (&minus;0.15 to &minus;0.35 kcal/mol/nt), balancing immune evasion with sufficient secondary structure. The current HBA1 3&rsquo;UTR (star) sits at CpG=4 with MFE/nt = &minus;0.30, already in a favorable region. CpG-depleted variants shift leftward to CpG=0 with minimal MFE change. <strong>Center:</strong> GC content vs UpA count. Higher GC naturally depletes UpA dinucleotides, and the highest-scoring designs occupy the upper-left quadrant (high GC, low UpA). <strong>Right:</strong> UTR length vs stability score, colored by GC content. Shorter UTRs (&lt;150 bp) achieve the highest stability scores, with the GC-rich HBA1 variants (warm colors) outperforming longer elements. This confirms that compact, GC-rich UTR elements are optimal for mRNA therapeutic applications.
+      <span class="figure-generation">Generated by utr3_umap_analysis.py. Stability and expression scores computed as weighted combinations of normalized features (see Methods). MFE predicted by RNAfold (RNA structure prediction v2.7.2).</span>
+    </div>
+  </div>
+
+  <div class="card-amber">
+    <div class="accent-left-amber">
+      <p style="margin-bottom: 0;">The BioNTech AES+mtRNR1 element, while clinically validated for vaccine applications, scored lower in our analysis (rank ~180) primarily due to its greater length (323 bp) and higher CpG count (11). This highlights that <strong>context matters</strong>: the AES+mtRNR1 element&rsquo;s advantages (minimal miRNA binding, proven clinical stability) may not be fully captured by sequence-based metrics alone.</p>
+    </div>
+  </div>
+
+  <!-- FIGURE 8: 3'UTR Rankings -->
+  <div class="figure">
+    <img src="utr3_rankings.png" alt="Top 20 3'UTR designs by desirability score">
+    <div class="figure-caption">
+      <span class="figure-label">Figure 8. Top 20 3&rsquo;UTR designs ranked by composite desirability score.</span> <strong>Left:</strong> Horizontal bar chart showing desirability scores for the top 20 designs. The dashed line marks the current HBA1 3&rsquo;UTR score (0.881, rank #19). All top 20 designs are HBA1 variants or HBA1-derived, confirming that this element provides the best baseline for mRNA-CAR applications. The top-ranked designs (HBA1_keep3p_25, HBA1_keep3p_75, HBA1_keep3p_50) are 3&rsquo;-truncation variants that retain 25&ndash;75% of the HBA1 sequence from the 3&rsquo; end. CpG-depleted variants (HBA1_noCpG_CG_to_CA, rank #7; HBA1_noCpG_CG_to_TG, rank #10) improve substantially over the unmodified HBA1 by eliminating all CpG sites. <strong>Right:</strong> Grouped bar chart comparing GC content, stability score, and expression score for the top 10 designs. All top designs achieve stability scores &gt;0.9 and expression scores &gt;0.8, with high-GC variants showing the strongest stability.
+      <span class="figure-generation">Generated by utr3_umap_analysis.py. Desirability score integrates stability score, expression score, and CpG penalty using a weighted formula. Rankings computed across all 257 designs.</span>
+    </div>
+  </div>
+
+  <!-- FIGURE 9: 3'UTR Correlations -->
+  <div class="figure">
+    <img src="utr3_correlations.png" alt="Correlation heatmap of 3'UTR features and scores">
+    <div class="figure-caption">
+      <span class="figure-label">Figure 9. Pearson correlation matrix of 3&rsquo;UTR biophysical features and composite scores.</span> Computed across all 257 3&rsquo;UTR designs. Key findings: (1) GC content correlates strongly with MFE/nt (<em>r</em> = &minus;0.82), confirming that GC-rich UTRs form more stable secondary structures. (2) UpA count is the strongest negative predictor of stability (<em>r</em> = &minus;0.86) and desirability (<em>r</em> = &minus;0.81), underscoring the importance of minimizing RNase L cleavage sites. (3) ARE motifs (ATTTA) correlate negatively with stability (<em>r</em> = &minus;0.62), consistent with their known role in recruiting mRNA decay machinery. (4) UTR length is moderately anti-correlated with desirability (<em>r</em> = &minus;0.70), penalizing longer elements. (5) The stability and expression scores are highly correlated with each other (<em>r</em> = 0.77) and with the composite desirability (<em>r</em> = 0.95 and 0.93, respectively), validating the scoring framework&rsquo;s internal consistency.
+      <span class="figure-generation">Generated by utr3_umap_analysis.py using Pearson correlation coefficients across 11 features and 3 composite scores. Heatmap rendered with seaborn with <em>r</em> value annotations.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <p style="margin-bottom: 0;">RNA secondary structure analysis revealed that MFE per nucleotide correlated strongly with GC content (<em>r</em> = &minus;0.82), consistent with the known relationship between GC content and RNA structural stability (Fig. 9). ARE motif (ATTTA) count showed moderate negative correlation with stability scores (<em>r</em> = &minus;0.62). Importantly, UpA count emerged as the strongest negative predictor of desirability (<em>r</em> = &minus;0.81), even more impactful than CpG count (<em>r</em> = &minus;0.39) in the 3&rsquo;UTR context, suggesting that RNase L susceptibility is the dominant concern for short UTR elements.</p>
+  </div>
+
+  <!-- 4C: Construct Panel -->
+  <div class="card">
+    <h3>C. Optimized Construct Panel</h3>
+
+    <p>The 30 assembled constructs span a systematic experimental design incorporating both conventional and structured 3&rsquo;UTR elements:</p>
+
+    <table>
+      <thead>
+        <tr><th>Group</th><th>n</th><th>CpG Range</th><th>GC Range</th><th>Purpose</th></tr>
+      </thead>
+      <tbody>
+        <tr><td style="font-weight: 500;">Primary</td><td>1</td><td>17</td><td>55.6%</td><td><span class="badge badge-blue">Lead candidate</span></td></tr>
+        <tr><td style="font-weight: 500;">CDS variation</td><td>4</td><td>18&ndash;20</td><td>55.3&ndash;55.9%</td><td>Codon optimization effects</td></tr>
+        <tr><td style="font-weight: 500;">Standard 3&rsquo;UTR</td><td>3</td><td>18&ndash;28</td><td>53.8&ndash;55.8%</td><td>Conventional UTR comparison</td></tr>
+        <tr style="background: #F0FDFA;"><td style="font-weight: 500;">Structured 3&rsquo;UTR</td><td>8</td><td>17&ndash;29</td><td>54.1&ndash;56.0%</td><td><span class="badge badge-emerald">ENE, xrRNA, hairpin, origami</span></td></tr>
+        <tr><td style="font-weight: 500;">Poly(A) variation</td><td>2</td><td>17</td><td>55.6&ndash;56.2%</td><td>Tail configuration</td></tr>
+        <tr><td style="font-weight: 500;">5&rsquo;UTR variation</td><td>1</td><td>17</td><td>55.2%</td><td>TIGIT vs HBA2</td></tr>
+        <tr style="background: #F0FDFA;"><td style="font-weight: 500;">Structured combos</td><td>6</td><td>17&ndash;29</td><td>54.4&ndash;55.9%</td><td>Structured UTRs &times; CDS/polyA</td></tr>
+        <tr style="background: #F0FDFA;"><td style="font-weight: 500;">Poly(A) loop</td><td>2</td><td>17&ndash;27</td><td>56.2&ndash;56.7%</td><td><span class="badge badge-emerald">Deadenylation protection</span></td></tr>
+        <tr><td style="font-weight: 500;">Original CDS ctrl</td><td>2</td><td>73&ndash;77</td><td>54.5%</td><td>Unoptimized CDS baselines</td></tr>
+        <tr><td style="font-weight: 500;">Control</td><td>1</td><td>77</td><td>54.5%</td><td><span class="badge badge-slate">Original reference</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card-blue">
+    <div class="accent-left">
+      <p><strong>Primary Candidate: OPT-01</strong></p>
+      <p style="margin-bottom: 8px;">TIGIT 5&rsquo;UTR + top the codon optimization model CDS + CpG-depleted HBA1 3&rsquo;UTR + A120 poly(A) tail</p>
+      <p style="margin-bottom: 0;"><span class="badge badge-emerald">17 CpG</span> &nbsp; <span class="badge badge-blue">78% reduction vs original</span> &nbsp; <span class="badge badge-slate">Protein-identical</span></p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 5: DISCUSSION -->
+  <!-- ============================================================ -->
+  <hr class="divider-thick">
+
+  <div class="section-label">Section 5</div>
+  <h2>Discussion</h2>
+  <div class="section-meta">Trade-offs, biological context, and experimental validation</div>
+
+  <div class="card">
+    <p>This work demonstrates a systematic, computationally-guided approach to mRNA construct optimization for CAR-T cell applications. By separately analyzing the CDS and UTR design spaces using UMAP dimensionality reduction, we identified the key trade-offs governing mRNA performance and designed constructs that navigate these trade-offs favorably.</p>
+  </div>
+
+  <div class="card">
+    <h3>CpG Depletion as the Primary Optimization Target</h3>
+    <p style="margin-bottom: 0;">Our analysis identified CpG content as the single most impactful feature for mRNA therapeutic design. The original construct contains 77 CpG dinucleotides &mdash; a substantial immunostimulatory burden even with pseudouridine incorporation. The model&rsquo;s species-aware codon selection naturally reduces CpG content by preferring human-optimal codons (which tend to avoid CG dinucleotides), achieving 16&ndash;19 CpG per CDS without explicit CpG minimization constraints.</p>
+  </div>
+
+  <div class="card">
+    <h3>UTR Selection Requires Biological Context</h3>
+    <p style="margin-bottom: 0;">While our computational scoring favored compact, high-GC UTR elements, the literature demonstrates that UTR function depends on cell type-specific factors not captured by sequence features alone. The Cafri lab&rsquo;s finding that TIGIT 5&rsquo;UTR outperforms HBA1/HBA2 specifically in T cells &mdash; despite similar sequence properties &mdash; underscores the importance of empirical validation. Our construct panel is designed to enable systematic comparison of UTR effects in T cells.</p>
+  </div>
+
+  <div class="card">
+    <h3>Structural Protection as a New Design Dimension</h3>
+    <p>The inclusion of structured 3&rsquo;UTR elements represents a fundamentally different approach to mRNA stabilization. Conventional UTR optimization focuses on sequence composition (GC content, CpG depletion, UpA reduction), but structured elements exploit RNA folding to physically block exonuclease access:</p>
+    <ul>
+      <li><strong>MALAT1 ENE triple helix</strong>: Buries the 3&rsquo; end in a U&middot;A-U triple-helical structure, blocking 3&rsquo;&rarr;5&rsquo; exonucleases. RNAfold predicts &minus;39.7 kcal/mol for the ENE-HBA1 element, significantly more structured than HBA1 alone (&minus;32.9 kcal/mol).</li>
+      <li><strong>xrRNA pseudoknot</strong>: The ring-like topology from flaviviruses mechanically blocks Xrn1, requiring no protein cofactors. The xrRNA-HBA1 element achieves &minus;51.1 kcal/mol MFE.</li>
+      <li><strong>RNA origami tile</strong>: The single-stranded origami design achieves the most negative MFE (&minus;179.8 kcal/mol) due to its extensive self-complementary architecture, though this extreme stability may impede ribosome readthrough.</li>
+      <li><strong>Poly(A) loop structures</strong>: Self-complementary sequences flanking the poly(A) tail form protective loops against CCR4-NOT deadenylation, combining structural and compositional protection.</li>
+    </ul>
+    <p style="margin-bottom: 0;">These structural designs are orthogonal to sequence-level optimization and can be combined with CpG depletion (as in the ENE-CpG-free variant), potentially enabling both immune evasion and enhanced structural stability simultaneously.</p>
+  </div>
+
+  <div class="card-rose">
+    <h3 style="margin-top: 0;">Limitations</h3>
+    <ol>
+      <li>Cell type-specific effects on mRNA stability and translation (particularly T cell-specific RNA-binding protein landscapes)</li>
+      <li>The impact of N1-methylpseudouridine modification on secondary structure and protein binding</li>
+      <li>IVT manufacturing yield and quality as a function of template sequence</li>
+      <li>In vivo pharmacokinetics and biodistribution</li>
+      <li>The A7 viral stability element (Jung et al., 2025) could not be included as its exact sequence was not publicly available at the time of analysis</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3>Experimental Next Steps</h3>
+    <p>The 30-construct panel is designed for efficient experimental screening:</p>
+    <ol>
+      <li>IVT synthesis with ARCA cap and N1-methylpseudouridine</li>
+      <li>Electroporation into primary human T cells</li>
+      <li>CAR surface expression kinetics (flow cytometry, 0&ndash;72h)</li>
+      <li>Co-culture cytotoxicity assays against CD19+ target cells (Nalm-6, Raji)</li>
+      <li>Cytokine profiling (IFN-&gamma;, IL-2, TNF-&alpha;) to assess both efficacy and tonic signaling</li>
+      <li>mRNA half-life measurement by qRT-PCR</li>
+    </ol>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 6: CONSTRUCT CATALOG -->
+  <!-- ============================================================ -->
+  <hr class="divider-thick">
+
+  <div class="section-label">Section 6</div>
+  <h2>Construct Catalog</h2>
+  <div class="section-meta">Complete inventory of 30 mRNA constructs for experimental screening</div>
+
+  <div class="card">
+    <p>The following table lists all 30 constructs assembled for experimental validation. Each construct is defined by its 5&rsquo;UTR, CDS variant, 3&rsquo;UTR element, and poly(A) tail configuration. Key metrics include total CpG dinucleotide count, overall GC content, and protein identity to the reference CAR sequence.</p>
+  </div>
+
+  <div class="card" style="padding: 16px; overflow-x: auto;">
+    <table style="font-size: 11px; min-width: 700px;">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Group</th>
+          <th>5&rsquo;UTR</th>
+          <th>3&rsquo;UTR</th>
+          <th>Poly(A)</th>
+          <th style="text-align: right;">Length</th>
+          <th style="text-align: right;">CpG</th>
+          <th style="text-align: right;">GC%</th>
+          <th style="text-align: center;">Protein</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight: 500;">OPT-01</td>
+          <td><span class="badge badge-blue">Primary</span></td>
+          <td>TIGIT</td>
+          <td>HBA1-noCpG</td>
+          <td>A120</td>
+          <td style="text-align: right;">1,740</td>
+          <td style="text-align: right;">17</td>
+          <td style="text-align: right;">55.6%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <tr>
+          <td style="font-weight: 500;">OPT-02</td>
+          <td><span class="badge badge-slate">CDS var</span></td>
+          <td>TIGIT</td>
+          <td>HBA1-noCpG</td>
+          <td>A120</td>
+          <td style="text-align: right;">1,740</td>
+          <td style="text-align: right;">18</td>
+          <td style="text-align: right;">55.3%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <tr>
+          <td style="font-weight: 500;">OPT-03</td>
+          <td><span class="badge badge-slate">CDS var</span></td>
+          <td>TIGIT</td>
+          <td>HBA1-noCpG</td>
+          <td>A120</td>
+          <td style="text-align: right;">1,740</td>
+          <td style="text-align: right;">18</td>
+          <td style="text-align: right;">55.6%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <tr>
+          <td style="font-weight: 500;">OPT-04</td>
+          <td><span class="badge badge-slate">CDS var</span></td>
+          <td>TIGIT</td>
+          <td>HBA1-noCpG</td>
+          <td>A120</td>
+          <td style="text-align: right;">1,740</td>
+          <td style="text-align: right;">20</td>
+          <td style="text-align: right;">55.9%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <tr>
+          <td style="font-weight: 500;">OPT-05</td>
+          <td><span class="badge badge-slate">CDS var</span></td>
+          <td>TIGIT</td>
+          <td>HBA1-noCpG</td>
+          <td>A120</td>
+          <td style="text-align: right;">1,740</td>
+          <td style="text-align: right;">19</td>
+          <td style="text-align: right;">55.7%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <tr>
+          <td style="font-weight: 500;">OPT-06</td>
+          <td><span class="badge badge-emerald">3&rsquo;UTR</span></td>
+          <td>TIGIT</td>
+          <td>HBA1</td>
+          <td>A120</td>
+          <td style="text-align: right;">1,740</td>
+          <td style="text-align: right;">21</td>
+          <td style="text-align: right;">55.8%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <tr>
+          <td style="font-weight: 500;">OPT-07</td>
+          <td><span class="badge badge-emerald">3&rsquo;UTR</span></td>
+          <td>TIGIT</td>
+          <td>HBB</td>
+          <td>A120</td>
+          <td style="text-align: right;">1,764</td>
+          <td style="text-align: right;">18</td>
+          <td style="text-align: right;">53.8%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <tr>
+          <td style="font-weight: 500;">OPT-08</td>
+          <td><span class="badge badge-emerald">3&rsquo;UTR</span></td>
+          <td>TIGIT</td>
+          <td>AES+mtRNR1</td>
+          <td>A120</td>
+          <td style="text-align: right;">1,953</td>
+          <td style="text-align: right;">28</td>
+          <td style="text-align: right;">55.0%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <!-- STRUCTURED 3'UTR GROUP -->
+        <tr style="background: #F0FDFA;">
+          <td style="font-weight: 500;">OPT-09</td>
+          <td><span class="badge badge-emerald">Struct</span></td>
+          <td>TIGIT</td>
+          <td>ENE-HBA1</td>
+          <td>A120</td>
+          <td style="text-align: right;">1,798</td>
+          <td style="text-align: right;">17</td>
+          <td style="text-align: right;">54.7%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <tr style="background: #F0FDFA;">
+          <td style="font-weight: 500;">OPT-10</td>
+          <td><span class="badge badge-emerald">Struct</span></td>
+          <td>TIGIT</td>
+          <td>ENE-only</td>
+          <td>A120</td>
+          <td style="text-align: right;">1,688</td>
+          <td style="text-align: right;">17</td>
+          <td style="text-align: right;">54.1%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <tr style="background: #F0FDFA;">
+          <td style="font-weight: 500;">OPT-11</td>
+          <td><span class="badge badge-emerald">Struct</span></td>
+          <td>TIGIT</td>
+          <td>xrRNA-HBA1</td>
+          <td>A120</td>
+          <td style="text-align: right;">1,810</td>
+          <td style="text-align: right;">21</td>
+          <td style="text-align: right;">55.2%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <tr style="background: #F0FDFA;">
+          <td style="font-weight: 500;">OPT-12</td>
+          <td><span class="badge badge-emerald">Struct</span></td>
+          <td>TIGIT</td>
+          <td>Hairpin-HBA1</td>
+          <td>A120</td>
+          <td style="text-align: right;">1,772</td>
+          <td style="text-align: right;">28</td>
+          <td style="text-align: right;">56.0%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <tr style="background: #F0FDFA;">
+          <td style="font-weight: 500;">OPT-13</td>
+          <td><span class="badge badge-emerald">Struct</span></td>
+          <td>TIGIT</td>
+          <td>Double-shield</td>
+          <td>A120</td>
+          <td style="text-align: right;">1,830</td>
+          <td style="text-align: right;">28</td>
+          <td style="text-align: right;">55.1%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <tr style="background: #F0FDFA;">
+          <td style="font-weight: 500;">OPT-14</td>
+          <td><span class="badge badge-emerald">Struct</span></td>
+          <td>TIGIT</td>
+          <td>xrRNA-only</td>
+          <td>A120</td>
+          <td style="text-align: right;">1,700</td>
+          <td style="text-align: right;">20</td>
+          <td style="text-align: right;">54.7%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <tr style="background: #F0FDFA;">
+          <td style="font-weight: 500;">OPT-15</td>
+          <td><span class="badge badge-emerald">Struct</span></td>
+          <td>TIGIT</td>
+          <td>Origami-tile</td>
+          <td>A120</td>
+          <td style="text-align: right;">1,878</td>
+          <td style="text-align: right;">29</td>
+          <td style="text-align: right;">55.9%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <tr style="background: #F0FDFA;">
+          <td style="font-weight: 500;">OPT-16</td>
+          <td><span class="badge badge-emerald">Struct</span></td>
+          <td>TIGIT</td>
+          <td>ENE-CpG-free</td>
+          <td>A120</td>
+          <td style="text-align: right;">1,798</td>
+          <td style="text-align: right;">17</td>
+          <td style="text-align: right;">54.7%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <!-- POLYA VARIATION -->
+        <tr>
+          <td style="font-weight: 500;">OPT-17</td>
+          <td><span class="badge badge-amber">PolyA</span></td>
+          <td>TIGIT</td>
+          <td>HBA1-noCpG</td>
+          <td>A60-G-A60</td>
+          <td style="text-align: right;">1,741</td>
+          <td style="text-align: right;">17</td>
+          <td style="text-align: right;">55.6%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <tr>
+          <td style="font-weight: 500;">OPT-18</td>
+          <td><span class="badge badge-amber">PolyA</span></td>
+          <td>TIGIT</td>
+          <td>HBA1-noCpG</td>
+          <td>A100</td>
+          <td style="text-align: right;">1,720</td>
+          <td style="text-align: right;">17</td>
+          <td style="text-align: right;">56.2%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <!-- 5'UTR -->
+        <tr>
+          <td style="font-weight: 500;">OPT-19</td>
+          <td><span class="badge badge-rose">5&rsquo;UTR</span></td>
+          <td>HBA2</td>
+          <td>HBA1-noCpG</td>
+          <td>A120</td>
+          <td style="text-align: right;">1,754</td>
+          <td style="text-align: right;">17</td>
+          <td style="text-align: right;">55.2%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <!-- STRUCTURED COMBOS -->
+        <tr style="background: #F0FDFA;">
+          <td style="font-weight: 500;">OPT-20</td>
+          <td><span class="badge badge-emerald">S-combo</span></td>
+          <td>TIGIT</td>
+          <td>ENE-HBA1</td>
+          <td>A120</td>
+          <td style="text-align: right;">1,798</td>
+          <td style="text-align: right;">18</td>
+          <td style="text-align: right;">54.4%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <tr style="background: #F0FDFA;">
+          <td style="font-weight: 500;">OPT-21</td>
+          <td><span class="badge badge-emerald">S-combo</span></td>
+          <td>TIGIT</td>
+          <td>xrRNA-HBA1</td>
+          <td>A60-G-A60</td>
+          <td style="text-align: right;">1,811</td>
+          <td style="text-align: right;">21</td>
+          <td style="text-align: right;">55.2%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <tr style="background: #F0FDFA;">
+          <td style="font-weight: 500;">OPT-22</td>
+          <td><span class="badge badge-emerald">S-combo</span></td>
+          <td>TIGIT</td>
+          <td>Double-shield</td>
+          <td>A120</td>
+          <td style="text-align: right;">1,830</td>
+          <td style="text-align: right;">29</td>
+          <td style="text-align: right;">55.2%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <tr style="background: #F0FDFA;">
+          <td style="font-weight: 500;">OPT-23</td>
+          <td><span class="badge badge-emerald">S-combo</span></td>
+          <td>TIGIT</td>
+          <td>ENE-HBA1</td>
+          <td>A100</td>
+          <td style="text-align: right;">1,778</td>
+          <td style="text-align: right;">17</td>
+          <td style="text-align: right;">55.3%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <tr style="background: #F0FDFA;">
+          <td style="font-weight: 500;">OPT-24</td>
+          <td><span class="badge badge-emerald">S-combo</span></td>
+          <td>TIGIT</td>
+          <td>Hairpin-HBA1</td>
+          <td>A120</td>
+          <td style="text-align: right;">1,772</td>
+          <td style="text-align: right;">29</td>
+          <td style="text-align: right;">55.8%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <tr style="background: #F0FDFA;">
+          <td style="font-weight: 500;">OPT-25</td>
+          <td><span class="badge badge-emerald">S-combo</span></td>
+          <td>TIGIT</td>
+          <td>Origami-tile</td>
+          <td>A60-G-A60</td>
+          <td style="text-align: right;">1,879</td>
+          <td style="text-align: right;">29</td>
+          <td style="text-align: right;">55.9%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <!-- POLY(A) LOOP -->
+        <tr style="background: #F0FDFA;">
+          <td style="font-weight: 500;">OPT-26</td>
+          <td><span class="badge badge-emerald">pA-loop</span></td>
+          <td>TIGIT</td>
+          <td>HBA1-noCpG</td>
+          <td>A50-lp-A50</td>
+          <td style="text-align: right;">1,738</td>
+          <td style="text-align: right;">17</td>
+          <td style="text-align: right;">56.2%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <tr style="background: #F0FDFA;">
+          <td style="font-weight: 500;">OPT-27</td>
+          <td><span class="badge badge-emerald">pA-loop</span></td>
+          <td>TIGIT</td>
+          <td>HBA1-noCpG</td>
+          <td>A30-hp-A70</td>
+          <td style="text-align: right;">1,751</td>
+          <td style="text-align: right;">27</td>
+          <td style="text-align: right;">56.7%</td>
+          <td style="text-align: center; color: #047857;">&#10003;</td>
+        </tr>
+        <!-- CONTROLS -->
+        <tr style="background: #FFF7ED;">
+          <td style="font-weight: 500;">OPT-28</td>
+          <td><span class="badge badge-amber">Orig CDS</span></td>
+          <td>TIGIT</td>
+          <td>HBA1-noCpG</td>
+          <td>A120</td>
+          <td style="text-align: right;">1,740</td>
+          <td style="text-align: right;">73</td>
+          <td style="text-align: right;">54.5%</td>
+          <td style="text-align: center; color: #B45309;">&#8800;</td>
+        </tr>
+        <tr style="background: #FFF7ED;">
+          <td style="font-weight: 500;">OPT-29</td>
+          <td><span class="badge badge-amber">Orig CDS</span></td>
+          <td>HBA2</td>
+          <td>HBA1</td>
+          <td>A120</td>
+          <td style="text-align: right;">1,755</td>
+          <td style="text-align: right;">77</td>
+          <td style="text-align: right;">54.5%</td>
+          <td style="text-align: center; color: #B45309;">&#8800;</td>
+        </tr>
+        <tr style="background: #FFF7ED;">
+          <td style="font-weight: 500;">OPT-30</td>
+          <td><span class="badge badge-amber">Control</span></td>
+          <td>HBA2</td>
+          <td>HBA1</td>
+          <td>A60-G-A60</td>
+          <td style="text-align: right;">1,755</td>
+          <td style="text-align: right;">77</td>
+          <td style="text-align: right;">54.5%</td>
+          <td style="text-align: center; color: #B45309;">&#8800;</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card-slate" style="font-size: 11.5px;">
+    <p style="margin-bottom: 8px;"><strong>Table legend.</strong> <span style="color: #047857;">&#10003;</span> = protein sequence identical to reference CAR. <span style="color: #B45309;">&#8800;</span> = uses original .dna file CDS (K&rarr;S at position 221). HBA1-noCpG = CpG-depleted HBA1 (CG&rarr;CA). ENE = MALAT1 triple helix. xrRNA = flaviviral pseudoknot. Double-shield = hairpin + ENE. Rows shaded <span style="background: #F0FDFA; padding: 1px 6px; border-radius: 4px;">green</span> contain structured RNA elements.</p>
+    <p style="margin-bottom: 0;">Badge legend: <span class="badge badge-blue">Primary</span> lead candidate. <span class="badge badge-slate">CDS var</span> codon variants. <span class="badge badge-emerald">3&rsquo;UTR</span> conventional UTR. <span class="badge badge-emerald">Struct</span> structured 3&rsquo;UTR. <span class="badge badge-emerald">S-combo</span> structured combo. <span class="badge badge-emerald">pA-loop</span> poly(A) loop. <span class="badge badge-amber">PolyA</span> tail config. <span class="badge badge-rose">5&rsquo;UTR</span> TIGIT vs HBA2. <span class="badge badge-amber">Control</span> reference.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 7: REFERENCES -->
+  <!-- ============================================================ -->
+  <hr class="divider-thick">
+
+  <div class="section-label">Section 7</div>
+  <h2>References</h2>
+  <div class="section-meta">17 cited works</div>
+
+  <div class="card">
+    <ol class="ref-list">
+      <li>Cafri, G. et al. Engineered mRNA backbone chemistry of in vitro-transcribed mRNA enhances delivery to and antigen-specific functional capacity of CD19-specific CAR T cells. <em>Mol. Ther. Nucleic Acids</em> 37, 102913 (2026).</li>
+      <li>Fallahpour, A. et al. the codon optimization model: a multispecies codon optimizer using context-aware neural networks. <em>Nat. Commun.</em> 16, 1 (2025).</li>
+      <li>Li, Y. et al. Cell-type-specific mRNA optimization through ribosome profiling-guided deep learning. <em>Nat. Commun.</em> 16, 1 (2025).</li>
+      <li>Jung, S. et al. RNA stability enhancers for durable base-modified mRNA therapeutics. <em>Nat. Biotechnol.</em> (2025).</li>
+      <li>Orlandini von Niessen, A.G. et al. Improving mRNA-based therapeutic gene delivery by expression-augmenting 3&rsquo; UTRs identified by cellular library screening. <em>Mol. Ther.</em> 27, 824&ndash;836 (2019).</li>
+      <li>Karik&oacute;, K. et al. Suppression of RNA recognition by Toll-like receptors: the impact of nucleoside modification and the evolutionary origin of RNA. <em>Immunity</em> 23, 165&ndash;175 (2005).</li>
+      <li>McInnes, L., Healy, J. &amp; Melville, J. UMAP: Uniform Manifold Approximation and Projection for dimension reduction. <em>arXiv</em> 1802.03426 (2018).</li>
+      <li>Presnyak, V. et al. Codon optimality is a major determinant of mRNA stability. <em>Cell</em> 160, 1111&ndash;1124 (2015).</li>
+      <li>Passmore, L.A. &amp; Coller, J. Roles of mRNA poly(A) tails in regulation of eukaryotic gene expression. <em>Nat. Rev. Mol. Cell Biol.</em> 23, 93&ndash;106 (2022).</li>
+      <li>Niu, Z. et al. mRNABERT: a pre-trained model for mRNA property prediction. <em>Nat. Commun.</em> 16, 1 (2025).</li>
+      <li>Zhao, Y. et al. Multiple injections of electroporated autologous T cells expressing a chimeric antigen receptor mediate regression of human disseminated tumor. <em>Cancer Res.</em> 70, 9053&ndash;9061 (2010).</li>
+      <li>Wreschner, D.H. et al. Interferon action &mdash; sequence specificity of the ppp(A2&rsquo;p)nA-dependent ribonuclease. <em>Nature</em> 289, 414&ndash;417 (1981).</li>
+      <li>Wilusz, J.E. et al. A triple helix stabilizes the 3&rsquo; ends of long noncoding RNAs that lack poly(A) tails. <em>Genes Dev.</em> 26, 2392&ndash;2407 (2012).</li>
+      <li>Chapman, E.G. et al. The structural basis of pathogenic subgenomic flavivirus RNA (sfRNA) production. <em>Science</em> 344, 307&ndash;310 (2014).</li>
+      <li>Geary, C., Rothemund, P.W.K. &amp; Andersen, E.S. A single-stranded architecture for cotranscriptional folding of RNA nanostructures. <em>Science</em> 345, 799&ndash;804 (2014).</li>
+      <li>Oh, S. et al. Poly(A) loop-modified mRNA vaccines enhance immunogenicity and protective efficacy. <em>npj Vaccines</em> 10, 1 (2025).</li>
+      <li>Brown, J.A. et al. Structural insights into the stabilization of MALAT1 noncoding RNA by a bipartite triple helix. <em>Nat. Struct. Mol. Biol.</em> 21, 633&ndash;640 (2014).</li>
+    </ol>
+  </div>
+
+  <hr class="divider">
+
+  <div style="text-align: center; color: #94A3B8; font-size: 11px; margin-top: 24px;">
+    <p style="margin-bottom: 4px;">Generated with computational analysis pipeline</p>
+    <p style="margin-bottom: 0;">Codon optimization &bull; RNA structure prediction &bull; UMAP &bull; June 2026</p>
+  </div>
+
+</div>
+</body>
+</html>
