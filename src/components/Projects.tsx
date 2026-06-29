@@ -41,6 +41,12 @@ const projects = [
     tags: [],
     link: "/car",
   },
+  {
+    title: "Forbidden Cure",
+    description: "A book: why we trust the algorithm but fear the molecule",
+    tags: [],
+    link: "https://www.amazon.com/Forbidden-Cure-Trust-Algorithm-Molecule-ebook/dp/B0GZLQR8ZZ",
+  },
 ];
 
 export default function Projects() {
